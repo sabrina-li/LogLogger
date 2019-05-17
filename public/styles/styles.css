@@ -1,3 +1,32 @@
-.list-group-item {
-  line-height: 2.5;
+#logo{
+  width: 60px;
+  height: auto;
+  display: inline-block;
+  transform:  translateY(8px);
+}
+#title{
+  display: inline-block;
+}
+
+header{
+  border-bottom: 1px solid #795548;
+}
+
+#signup-header{
+  text-align: center;
+}
+
+main{
+  padding-top: 30px;
+  height: 100%;
+}
+
+.login-div{
+  padding: 10px;
+}
+
+
+#chart-div{
+  height: 300px;
+  width: 300px;
 }
