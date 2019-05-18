@@ -1,11 +1,11 @@
-export default function(sequeilize, Sequeilize) {
-    var Stool = sequeilize.define("stools", {
+module.exports = function(sequelize, Sequelize) {
+    var Stool = sequelize.define("stools", {
         score: {
-            type: Sequeilize.INTEGER,
+            type: Sequelize.INTEGER,
             allowNull: false
         },
-        time: Sequeilize.DATETIME,
-        comment: Sequeilize.STRING
+        time: Sequelize.DATETIME,
+        comment: Sequelize.STRING
     });
 
     Stool.associate = function(models) {
@@ -18,5 +18,5 @@ export default function(sequeilize, Sequeilize) {
 
     return Stool;
     
-}
+};
 
