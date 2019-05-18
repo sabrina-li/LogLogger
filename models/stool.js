@@ -1,7 +1,7 @@
 module.exports = function(sequilize, DataTypes) {
     var Stool = sequilize.define("Stool", {
         id: {
-            type: DataTypes.INTEGER,
+            type: Sequeilize.INTEGER,
             allowNull: false
         },
         score: {
