@@ -1,11 +1,11 @@
-module.exports = function(sequeilize, Sequeilize) {
-    var Stool = sequeilize.define("stools", {
+module.exports = function(sequelize, Sequelize) {
+    var Stool = sequelize.define("stools", {
         score: {
-            type: Sequeilize.INTEGER,
+            type: Sequeiize.INTEGER,
             allowNull: false
         },
-        time: Sequeilize.DATETIME,
-        comment: Sequeilize.STRING
+        time: Sequeiize.DATETIME,
+        comment: Sequeiize.STRING
     });
 
     Stool.associate = function(models) {

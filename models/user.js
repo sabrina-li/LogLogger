@@ -1,12 +1,12 @@
-module.exports = function(sequelize, Sequeilize) {
+module.exports = function(sequelize, Sequelize) {
   var User = sequelize.define("users", {
     username: {
-      type: Sequeilize.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
       unique: true
     },
     password: {
-      type: Sequeilize.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
       unique: true
     } 
