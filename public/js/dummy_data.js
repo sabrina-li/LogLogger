@@ -1,17 +1,17 @@
 const dummy_data = {
     stool:[
         {
-            bristolScore:1,
+            score:1,
             time:"05/14/2019 14:00",
-            comments:"ewwwww"
+            comment:"ewwwww"
         },{
-            bristolScore:4,
+            score:4,
             time:"05/16/2019 14:00",
-            comments:"interesting..."
+            comment:"interesting..."
         },{
-            bristolScore:6,
+            score:6,
             time:"05/17/2019 14:00",
-            comments:"???"
+            comment:"???"
         }
     ],
     water:[
