@@ -1,9 +1,11 @@
 $(document).ready(_=>{
     const $waterAddBtn = $(".waterAddBtn");
     const $stoolAddBtn = $(".stoolAddBtn");
+    $('.modal').modal();
 
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.modal');
-        var instances = M.Modal.init(elems, options);
-      });
+    $("#waterAddBtn").on("click",function(){
+        console.log("clicked");
+        console.log($(this).attr("id"));
+        // $('#modalWater').modal("open");
+    });
 });
