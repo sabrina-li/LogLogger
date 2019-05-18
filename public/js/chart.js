@@ -23,9 +23,9 @@ const displayChart = _ => {
     const stoolData = dummy_data.stool;//from dummy_Data
     const bristolScores = stoolData.map(x => {
         let result = {};
-        result.y = x.bristolScore;
+        result.y = x.score;
         result.x = x.time;
-        
+        result.comment = x.comment;
         return result;
     });
     console.log(waterTimes);
