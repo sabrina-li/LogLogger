@@ -1,11 +1,17 @@
 $(document).ready(_=>{
     const $waterAddBtn = $(".waterAddBtn");
     const $stoolAddBtn = $(".stoolAddBtn");
-    $('.modal').modal();
+    
 
     $("#waterAddBtn").on("click",function(){
         console.log("clicked");
         console.log($(this).attr("id"));
-        // $('#modalWater').modal("open");
+    });
+
+
+    $(".sub-button").on("mouseover",function(event){
+        $('.modal').modal();
+        console.log("hover");
+        $(this).addClass("modal-trigger");
     });
 });

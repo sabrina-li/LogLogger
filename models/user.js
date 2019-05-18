@@ -12,11 +12,11 @@ module.exports = function (sequelize, Sequelize) {
         }
     });
 
-    User.associate = function (models) {
-        User.hasMany(models.Stool, {
-            onDelete: "cascade"
-        });
-    };
+    // User.associate = function (models) {
+    //     User.hasMany(models.Stool, {
+    //         onDelete: "cascade"
+    //     });
+    // };
 
     return User;
 };

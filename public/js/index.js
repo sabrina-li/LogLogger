@@ -9,7 +9,7 @@ $(document).ready(_=>{
             password:$("#password").val()
         };
         API.login(user).then(result =>{
-            console.log(result);
+            // console.log(result);
         });
     });
     $signupBtn.on('click',event=>{
@@ -19,8 +19,7 @@ $(document).ready(_=>{
             password:$("#password").val()
         };
         API.signup(user).then(result =>{
-            console.log(result);
+            // console.log(result);
         });
     });
-
 });
