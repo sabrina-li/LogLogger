@@ -33,7 +33,7 @@ main{
   width: 100%;
 }
 
-#modalWater{
+#modalWater,#modalStool{
   height: 120%;
-  overflow: scroll;
+  /* overflow: scroll; */
 }

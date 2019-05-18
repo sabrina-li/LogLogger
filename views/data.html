@@ -43,10 +43,10 @@
             <div id="modalWater" class="modal">
                 <div class="modal-content">
                     <h4>Add Water</h4>
-                    <form action="/api/" method="get">
+                    <form action="/api/water" method="POST">
                         <div class="row">
                             <div class="input-field col s12">
-                                
+
                                 <input id="waterInput" type="text" class="validate" required="" aria-required="true">
                                 <label for="waterInput">Water Intake(ml)</label>
                             </div>
@@ -59,46 +59,86 @@
                             <div class="input-field col s4">
                                 <select>
                                     <option value="" disabled selected>Choose Hour</option>
-                                    <option value="12">12 AM</option>
-                                    <option value="1">01 AM</option>
-                                    <option value="2">02 AM</option>
-                                    <option value="3">03 AM</option>
-                                    <option value="4">04 AM</option>
-                                    <option value="5">05 AM</option>
-                                    <option value="6">06 AM</option>
-                                    <option value="7">07 AM</option>
-                                    <option value="8">08 AM</option>
-                                    <option value="9">09 AM</option>
-                                    <option value="10">10 AM</option>
-                                    <option value="11">11 AM</option>
+                                    <option value="1">01</option>
+                                    <option value="2">02</option>
+                                    <option value="3">03</option>
+                                    <option value="4">04</option>
+                                    <option value="5">05</option>
+                                    <option value="6">06</option>
+                                    <option value="7">07</option>
+                                    <option value="8">08</option>
+                                    <option value="9">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
                                 </select>
                                 <label>Time</label>
                             </div>
                             <div class="input-field col s3">
-                                    <select>
-                                            <option value="1">AM</option>
-                                            <option value="2">PM</option>
-                                        </select>
-                                    <label>AM</label>
+                                <select>
+                                    <option value="1">AM</option>
+                                    <option value="2">PM</option>
+                                </select>
+                                <label>AM</label>
                             </div>
+                        </div>
+                        <div class="modal-footer">
+                                <input type="submit" name="submit" class="btn modal-close waves-effect waves-green"></input>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <a href="#!" class="btn modal-close waves-effect waves-green">Submit</a>
-                </div>
+
             </div>
 
             <div id="modalStool" class="modal">
                 <div class="modal-content">
-                    <h4>Modal Stool</h4>
-                    <p>A bunch of text</p>
-                </div>
-                <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                    <h4>Add Stool</h4>
+                    <form action="/api/stool" method="POST">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="stoolInput" type="text" class="validate" required="" aria-required="true">
+                                <label for="stoolInput">Bristol Score(1-7)</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s5">
+                                <input id="waterDatePicker" type="text" class="datepicker">
+                                <label for="waterDatePicker">Choose Date</label>
+                            </div>
+                            <div class="input-field col s4">
+                                <select>
+                                    <option value="" disabled selected>Choose Hour</option>
+                                    <option value="1">01</option>
+                                    <option value="2">02</option>
+                                    <option value="3">03</option>
+                                    <option value="4">04</option>
+                                    <option value="5">05</option>
+                                    <option value="6">06</option>
+                                    <option value="7">07</option>
+                                    <option value="8">08</option>
+                                    <option value="9">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                                <label>Time</label>
+                            </div>
+                            <div class="input-field col s3">
+                                <select>
+                                    <option value="1">AM</option>
+                                    <option value="2">PM</option>
+                                </select>
+                                <label>AM</label>
+                            </div>
+                        </div>
+                        <!-- <div class="modal-footer">
+                            <div class="modal-footer"> -->
+                                
+                            <!-- </div>
+                        </div> -->
+                    </form>
                 </div>
             </div>
-
         </div>
 
     </main>
