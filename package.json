@@ -26,10 +26,7 @@
     "cross-env": "^5.2.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.2",
-<<<<<<< HEAD
-=======
     "eslint": "^5.16.0",
->>>>>>> f1b70bc638ff6b8969795a8bb01ca9b420d3c7e0
     "eslint-plugin-react": "^7.13.0",
     "mocha": "^5.2.0",
     "prettier": "^1.13.7"
