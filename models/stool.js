@@ -1,11 +1,17 @@
 module.exports = function(sequilize, DataTypes) {
     var Stool = sequilize.define("Stool", {
-        id: DataTypes.INT,
-        score: DataTypes.INT,
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        score: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         time: DataTypes.DATETIME,
         comment: DataTypes.STRING,
         user_id: {
-            type: DataTypes.INT
+            type: DataTypes.INTEGER
         }
     });
 
