@@ -22,6 +22,7 @@
 .add-button:hover {
     color: rgba(255,255,255,0);
     /* transform: rotate(45deg); */
+    display: hidden;
 }
 
 .sub-button {
@@ -63,15 +64,15 @@
     top: 0;
     left: 0;
     border-radius: 28px 0 0 28px;
+    /* z-index: -1; */
 }
 
 .tr {  
     top: 0;
     right: 0;
     border-radius: 0 28px 28px 0;
+    /* z-index: -1; */
 }
-
-
 
 .add-button:hover .sub-button {
     width: 56px;
@@ -111,10 +112,12 @@
     top: 0px;
     left: 0px;
     border-radius: 28px;
+    /* z-index: 0; */
 }
 
 .add-button:hover .tr {  
     top: 0px;
-    right: -60px;
+    right: -56px;
     border-radius: 28px;
+    /* z-index: 0; */
 }
