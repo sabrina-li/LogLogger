@@ -1,5 +1,5 @@
-module.exports = function(sequilize, DataTypes) {
-    var Stool = sequilize.define("Stool", {
+module.exports = function(sequeilize, DataTypes) {
+    var Stool = sequeilize.define("Stool", {
         id: {
             type: Sequeilize.INTEGER,
             allowNull: false
