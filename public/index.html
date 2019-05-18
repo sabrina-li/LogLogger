@@ -25,11 +25,11 @@
         <div class="row container z-depth-3 login-div">
             <h4 id="signup-header">Welcome! Let's get you signed up!</h4>
         
-            <form class="col s12">
+            <form class="col s12" action="">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="email" type="email" class="validate" required="" aria-required="true">
-                        <label for="email">Email</label>
+                        <input id="username" type="text" class="validate" required="" aria-required="true">
+                        <label for="username">Username</label>
                     </div>
                 </div>
                 <div class="row">
@@ -40,18 +40,21 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <button id="login" class="waves-effect waves-light btn">Login</button>
-                        <button id="signUp" class="waves-effect waves-light btn">SignUp</button>
+                        <button id="loginBtn" class="waves-effect waves-light btn">Login</button>
+                        <button id="signupBtn" class="waves-effect waves-light btn">SignUp</button>
                     </div>
                 </div>
             </form>
         </div>
     </main>
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/API.js"></script>
     <script src="js/index.js"></script>
-
 </body>
 
 </html>

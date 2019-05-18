@@ -1,6 +1,13 @@
 const displayChart = _ => {
 
-    const ctx = document.getElementById('poopChart').getContext('2d');
+    const canvas = document.getElementById('poopChart');
+    const ctx = canvas.getContext('2d');
+    // Make it visually fill the positioned parent
+    canvas.style.width ='100%';
+    canvas.style.height='100%';
+    // ...then set the internal size to match
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
 
     const lightBlue = 'rgba(54, 162, 235, 0.2)',
         blue = 'rgba(54, 162, 235, 1)',
@@ -61,13 +68,22 @@ const displayChart = _ => {
                     type: 'time',
                     time: {
                         parser: timeFormat,
-                        round: 'hour',
-                        
+                        // round: 'hour',
                         tooltipFormat: 'll HH:mm',
-                        // displayFormats: {
-                        //     // day:'MMM D',
-                        //     minute:'h:mm a'
-                        // }
+                        unit: 'hour',
+                        unitStepSize: 10,
+                        displayFormats: {
+                            'millisecond': 'MMM-DD HHa',
+                            'second': 'MMM-DD HHa',
+                            'minute': 'MMM-DD HHa',
+                            'hour': 'MMM-DD HHa',
+                            'day': 'MMM-DD HHa',
+                            'week': 'MMM-DD HHa',
+                            'month': 'MMM-DD HHa',
+                            'quarter': 'MMM-DD HHa',
+                            'year': 'MMM-DD HHa'
+                         }
+                        
                     },
                     scaleLabel: {
                         display: true,
