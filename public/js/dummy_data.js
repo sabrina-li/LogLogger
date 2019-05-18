@@ -1,4 +1,4 @@
-const dummy_data = {
+const dummyData = {
     stool:[
         {
             score:1,
@@ -26,4 +26,4 @@ const dummy_data = {
             time:"05/17/2019 12:00",
         }
     ]
-}
+};

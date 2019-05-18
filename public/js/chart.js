@@ -17,10 +17,10 @@ const displayChart = _ => {
     const timeFormat = 'MM/DD/YYYY HH:mm';
     moment.defaultFormat = timeFormat;
 
-    const waterData = dummy_data.water;//from dummy_Data
+    const waterData = dummyData.water;//from dummy_Data
     const waterIntake = waterData.map(x => x.intake);
     const waterTimes = waterData.map(x => x.time);
-    const stoolData = dummy_data.stool;//from dummy_Data
+    const stoolData = dummyData.stool;//from dummy_Data
     const bristolScores = stoolData.map(x => {
         let result = {};
         result.y = x.score;
@@ -83,7 +83,6 @@ const displayChart = _ => {
                             'quarter': 'MMM-DD HHa',
                             'year': 'MMM-DD HHa'
                          }
-                        
                     },
                     scaleLabel: {
                         display: true,
@@ -91,7 +90,8 @@ const displayChart = _ => {
                     }
                 }],
                 yAxes: [{
-                    type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                    type: "linear",
+                    // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
                     display: true,
                     position: "left",
                     id: "y-water",
@@ -120,14 +120,9 @@ const displayChart = _ => {
     });
 
     return myChart;
-}
+};
 
-
-
-
-
-
-const timeFormat = "YYYY-DD-MM HH:mm"
+const timeFormat = "YYYY-DD-MM HH:mm";
 
 function newDate(days) {
     return moment().add(days, 'd').toDate();
@@ -136,7 +131,7 @@ function newDate(days) {
 function newDateString(days) {
     return moment().add(days, 'd').format(timeFormat);
 }
-console.log(newDate(0))
+console.log(newDate(0));
 console.log(newDateString(0));
 
 displayChart();
