@@ -1,20 +1,26 @@
-// var app = new Vue({
-//     el: '#app',
-//     data: {
-//       message: 'Hello Vue!'
-//     }
-//   })
+$(document).ready(_=>{
+    var $loginBtn = $("#loginBtn");
+    var $signupBtn = $("#example-signupBtn");   
+    
+    $loginBtn.on('click',event=>{
+        event.preventDefault();
+        const user = {
+            username:$("#username").val(),
+            password:$("#password").val()
+        }
+        API.login(user).then(result =>{
+            console.log(result);
+        })
+    });
+    $signupBtn.on('click',event=>{
+        event.preventDefault();
+        const user = {
+            username:$("#username").val(),
+            password:$("#password").val()
+        }
+        API.signup(user).then(result =>{
+            console.log(result);
+        })
+    })
 
-//   var app2 = new Vue({
-//     el: '#app-2',
-//     data: {
-//       message: 'You loaded this page on ' + new Date().toLocaleString()
-//     }
-//   })
-
-//   var app3 = new Vue({
-//     el: '#app-3',
-//     data: {
-//       seen: false
-//     }
-//   })
+})
