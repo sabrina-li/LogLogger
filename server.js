@@ -39,8 +39,8 @@ passport.use(new LocalStrategy(
 ));
 
 // Handlebars
-app.engine(
-  "handlebars",
+app.engine( 
+  "handlebars", 
   exphbs({
     defaultLayout: "main"
   })

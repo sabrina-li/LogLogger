@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "stools_db",
+    "database": "exampleDB_development",
     "host": "localhost",
     "dialect": "mysql"
   },
