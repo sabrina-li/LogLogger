@@ -1,6 +1,11 @@
 $(document).ready(_=>{
+<<<<<<< HEAD
     const $loginBtn = $("#loginBtn");
     const $signupBtn = $("#example-signupBtn");
+=======
+    var $loginBtn = $("#loginBtn");
+    var $signupBtn = $("#example-signupBtn");
+>>>>>>> f1b70bc638ff6b8969795a8bb01ca9b420d3c7e0
 
     $loginBtn.on('click',event=>{
         event.preventDefault();
@@ -22,5 +27,4 @@ $(document).ready(_=>{
             console.log(result);
         });
     });
-
 });
