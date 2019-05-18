@@ -1,6 +1,6 @@
 $(document).ready(_=>{
-    var $loginBtn = $("#loginBtn");
-    var $signupBtn = $("#example-signupBtn");
+    const $loginBtn = $("#loginBtn");
+    const $signupBtn = $("#example-signupBtn");
 
     $loginBtn.on('click',event=>{
         event.preventDefault();
@@ -22,4 +22,5 @@ $(document).ready(_=>{
             console.log(result);
         });
     });
+
 });
