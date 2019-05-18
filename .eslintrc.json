@@ -1,9 +1,17 @@
 {
     "env": {
+<<<<<<< HEAD
         "browser": true
 
     },
     "extends": "eslint:recommended",
+=======
+        "browser": true,
+        "commonjs": true,
+        
+        "node": true
+    },
+>>>>>>> f1b70bc638ff6b8969795a8bb01ca9b420d3c7e0
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -12,6 +20,7 @@
         "ecmaFeatures": {
             "jsx": true
         },
+<<<<<<< HEAD
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
@@ -19,5 +28,47 @@
         "react"
     ],
     "rules": {
+=======
+        "ecmaVersion": 2018
+    },
+
+    "rules": {
+        "no-duplicate-case":"error",
+      "no-empty":"error",
+      "no-extra-semi":"error",
+      "no-func-assign": "error",
+      "no-irregular-whitespace":"error",
+      "no-unreachable": "error",
+      "curly": "error",
+      "dot-notation": "error",
+      "eqeqeq": "error",
+      "no-empty-function": "error",
+       "no-multi-spaces": 1,
+      "no-mixed-spaces-and-tabs": "error",
+      "no-trailing-spaces": 1,
+      "default-case": "error",
+      "no-fallthrough": "error",
+      "no-unused-vars": 1,
+      "no-use-before-define": "error",
+      "no-redeclare": "error",
+      "camelcase": "error",
+      "brace-style": "error",
+      "indent": [
+          1,
+          4
+      ],
+      "linebreak-style": [
+          "error",
+          "unix"
+      ],
+      "quotes": [
+          1,
+          "double"
+      ],
+      "semi": [
+          "error",
+          "always"
+      ]
+>>>>>>> f1b70bc638ff6b8969795a8bb01ca9b420d3c7e0
     }
 }

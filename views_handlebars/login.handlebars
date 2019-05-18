@@ -1,0 +1,39 @@
+<div id="login">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 offset-2">
+        <h2>Login</h2>
+        <form class="clearfix mb-4" action="/login" method="POST">
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" name="username" class="form-control" aria-describedby="username" placeholder="Enter Username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" aria-describedby="password" placeholder="Enter Password">
+          </div>
+          <div>
+              <input type="submit" class="btn btn-primary float-right" value="Log In">
+          </div>
+        </form>
+        <h2>Signup</h2>
+        <form class="clearfix mb-4" action="/signup" method="POST">
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" name="username" class="form-control" aria-describedby="username" placeholder="Enter Username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" aria-describedby="password" placeholder="Enter Password">
+          </div>
+          <div>
+              <input type="submit" class="btn btn-primary float-right" value="Log In">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
