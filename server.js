@@ -6,10 +6,10 @@ var passport = require("passport");
 //require local strategy constructor
 var LocalStrategy = require('passport-local').Strategy;
 //require session for persistent session state via session storage
-//* deprecation issues
 var session = require("express-session");
-
 var db = require("./models");
+//*require User model for local strategy setup
+var User = require("./models/user");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -18,8 +18,10 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+//passport and session middleware
+//*hide session secret later
 app.use(passport.initialize());
-app.use(session({ secret: "stool" }));
+app.use(session({ secret: "temporary secret" }));
 app.use(passport.session());
 
 //*need to add functions to serialize and deserialize users (cookie stuff)
@@ -28,8 +30,8 @@ app.use(passport.session());
 passport.use(new LocalStrategy(
   function (username, password, done) {
     User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); };
-      if (!user) { return done(null, false, { message: "Incorrect username." }); };
+      if (err) { return done(err); }
+      if (!user) { return done(null, false, { message: "Incorrect username." }); }
       if (!user.verifyPassword(password)) { return done(null, false, { message: "Incorrect password." }); };
       return done(null, user);
     });
@@ -67,7 +69,7 @@ app.post("/signup", function (req, res) {
   //*generate hash for password?
   newUser.password = req.body.password;
   //*need validation to check for existing users
-  console.log(name + password);
+  console.log(newUser.username + newUser.password);
   //*need to add User model to MySQL database
   res.end();
 });
