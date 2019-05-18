@@ -1,23 +1,34 @@
-module.exports = function(sequelize, Sequeilize) {
-  var User = sequelize.define("users", {
-    username: {
-      type: Sequeilize.STRING,
-      allowNull: false,
-      unique: true
-    },
-    password: {
-      type: Sequeilize.STRING,
-      allowNull: false,
-      unique: true
-    } 
-  });
+import React from 'react';
+import ReactDOM from 'react-dom';
+const yellow = 'rgb(255, 215, 18)';
 
-  User.associate = function(models) {
-    User.hasMany(models.Stool, {
-      onDelete: "cascade"
-    });
-  };
+export class TopNumber extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return User;
+    this.state = { 'highest': 0 };
+  }
   
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.number > this.state.highest) {
+      this.setState({
+        highest: nextProps.number
+      });
+    }
+  }
+
+  render() {
+    return (
+      <h1>
+        Top Number: {this.state.highest}
+      </h1>
+    );
+  }
+}
+
+TopNumber.propTypes = {
+  number: React.PropTypes.number,
+  game: React.PropTypes.bool
 };
+
+

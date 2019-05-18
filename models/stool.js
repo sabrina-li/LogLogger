@@ -1,4 +1,4 @@
-module.exports = function(sequeilize, Sequeilize) {
+export default function(sequeilize, Sequeilize) {
     var Stool = sequeilize.define("stools", {
         score: {
             type: Sequeilize.INTEGER,
@@ -18,5 +18,5 @@ module.exports = function(sequeilize, Sequeilize) {
 
     return Stool;
     
-};
+}
 
