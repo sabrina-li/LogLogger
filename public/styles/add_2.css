@@ -63,35 +63,21 @@
     top: 0;
     left: 0;
     border-radius: 28px 0 0 28px;
-<<<<<<< HEAD
     /* z-index: -1; */
-=======
->>>>>>> f1b70bc638ff6b8969795a8bb01ca9b420d3c7e0
 }
 
 .tr {  
     top: 0;
     right: 0;
     border-radius: 0 28px 28px 0;
-<<<<<<< HEAD
     /* z-index: -1; */
 }
 
-=======
-}
-
-
-
->>>>>>> f1b70bc638ff6b8969795a8bb01ca9b420d3c7e0
 .add-button:hover .sub-button {
     width: 56px;
     height: 56px;
     color: rgba(255,255,255,1);
-<<<<<<< HEAD
     z-index: 1;
-=======
-
->>>>>>> f1b70bc638ff6b8969795a8bb01ca9b420d3c7e0
     -webkit-transition: top .4s cubic-bezier(.58,-0.37,.45,1.46) .4s,
         left .4s cubic-bezier(.58,-0.37,.45,1.46) .4s,
         bottom .4s cubic-bezier(.58,-0.37,.45,1.46) .4s,
@@ -123,24 +109,14 @@
 
 .add-button:hover .tl {
     top: 0px;
-<<<<<<< HEAD
     left: -28px;
     border-radius: 28px;
     /* z-index: 0; */
-=======
-    left: 0px;
-    border-radius: 28px;
->>>>>>> f1b70bc638ff6b8969795a8bb01ca9b420d3c7e0
 }
 
 .add-button:hover .tr {  
     top: 0px;
-<<<<<<< HEAD
     right: -28px;
     border-radius: 28px;
     /* z-index: 0; */
-=======
-    right: -60px;
-    border-radius: 28px;
->>>>>>> f1b70bc638ff6b8969795a8bb01ca9b420d3c7e0
 }
