@@ -4,7 +4,7 @@ var exphbs = require("express-handlebars");
 //require passport for authentication
 var passport = require("passport");
 //require local strategy constructor
-var LocalStrategy = require('passport-local').Strategy;
+var LocalStrategy = require("passport-local").Strategy;
 //require session for persistent session state via session storage
 var session = require("express-session");
 var db = require("./models");
@@ -30,17 +30,23 @@ app.use(passport.session());
 passport.use(new LocalStrategy(
   function (username, password, done) {
     User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) { return done(null, false, { message: "Incorrect username." }); }
-      if (!user.verifyPassword(password)) { return done(null, false, { message: "Incorrect password." }); };
+      if (err) {
+        return done(err);
+      }
+      if (!user) {
+        return done(null, false, { message: "Incorrect username." });
+      }
+      if (!user.verifyPassword(password)) {
+        return done(null, false, { message: "Incorrect password." });
+      }
       return done(null, user);
     });
   }
 ));
 
 // Handlebars
-app.engine( 
-  "handlebars", 
+app.engine(
+  "handlebars",
   exphbs({
     defaultLayout: "main"
   })
