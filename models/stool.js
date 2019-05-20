@@ -17,6 +17,5 @@ module.exports = function(sequelize, DataTypes) {
     };
 
 
-    return Stool;
-    
+    return Stool;    
 };

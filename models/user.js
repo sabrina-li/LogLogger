@@ -8,7 +8,6 @@ module.exports = function(sequelize, Sequelize) {
         password: {
             type: Sequelize.STRING,
             allowNull: false,
-            unique: true
         }
     });
 
@@ -19,5 +18,4 @@ module.exports = function(sequelize, Sequelize) {
     };
 
     return User;
-  
 };

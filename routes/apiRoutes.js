@@ -16,11 +16,13 @@ const convertTime = body=>{
 
 module.exports = function(app) {
     // TODO Get all data from an user
+    // Get all examples
     app.get("/api/alldata", function(req, res) {
         db.Example.findAll({}).then(function(dbresult) {
             res.json(dbresult);
         });
     });
+
 
     //post a new stool log for user
     app.post("/api/stool", function(req, res) {
@@ -72,6 +74,10 @@ module.exports = function(app) {
     // TODO: Delete an user by id
     app.delete("/api/users/:id", function(req, res) {
         //TODO: check for authenticated or not?
+
+    // Delete an example by id
+    app.delete("/api/examples/:id", function(req, res) {
+
         db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
             res.json(dbExample);
         });
