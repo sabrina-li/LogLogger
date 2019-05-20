@@ -20,8 +20,6 @@ $(document).ready(_ => {
         console.log(res.status,res.responseText);
         $("#error").empty();
         $("#error").append("Error Occurred: ",res.status," ",res.responseText);
-        // errorDiv.css.color = "red";
-        // errorDiv.text("Error Occurred: ",res.status," ",res.responseText);
     };
 
     const options = { 

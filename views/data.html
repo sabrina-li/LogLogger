@@ -43,7 +43,7 @@
             <div id="modalWater" class="modal">
                 <div class="modal-content">
                     <h4>Add Water</h4>
-                    <form action="/api/water" method="POST">
+                    <form action="/api/water" method="POST" class="addForm">
                         <div class="row">
                             <div class="input-field col s12">
                                 <input name="intake" id="waterInput" type="text" class="validate" required="" aria-required="true">
@@ -82,8 +82,9 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="submit" name="submit" class="btn modal-close waves-effect waves-green"></input>
+                            <button type="submit" name="submit" class="btn waves-effect waves-green">Submit</button>
                         </div>
+                        <div id="error"></div>
                     </form>
                 </div>
 
