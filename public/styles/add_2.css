@@ -63,21 +63,21 @@
     top: 0;
     left: 0;
     border-radius: 28px 0 0 28px;
+    /* z-index: -1; */
 }
 
 .tr {  
     top: 0;
     right: 0;
     border-radius: 0 28px 28px 0;
+    /* z-index: -1; */
 }
-
-
 
 .add-button:hover .sub-button {
     width: 56px;
     height: 56px;
     color: rgba(255,255,255,1);
-
+    z-index: 1;
     -webkit-transition: top .4s cubic-bezier(.58,-0.37,.45,1.46) .4s,
         left .4s cubic-bezier(.58,-0.37,.45,1.46) .4s,
         bottom .4s cubic-bezier(.58,-0.37,.45,1.46) .4s,
@@ -109,12 +109,14 @@
 
 .add-button:hover .tl {
     top: 0px;
-    left: 0px;
+    left: -28px;
     border-radius: 28px;
+    /* z-index: 0; */
 }
 
 .add-button:hover .tr {  
     top: 0px;
-    right: -60px;
+    right: -28px;
     border-radius: 28px;
+    /* z-index: 0; */
 }

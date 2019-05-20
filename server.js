@@ -35,7 +35,7 @@ passport.use(new LocalStrategy(
     }
 ));
 
-//Error handler
+//Error handler function
 function errHandler(err) {
     console.error("There was an error performing the operation");
     console.log(err);
@@ -54,6 +54,9 @@ var syncOptions = { force: false };
 // clearing the `testdb`
 if (process.env.NODE_ENV === "test") {
     syncOptions.force = true;
+} else if (!process.env.NODE_ENV) {
+    syncOptions.force = true;
+    syncOptions.match = /_development$/;
 }
 
 // Starting the server, syncing our models ------------------------------------/
