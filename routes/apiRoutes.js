@@ -1,22 +1,63 @@
 var db = require("../models");
 
 module.exports = function(app) {
-    // Get all examples
+    // TODO Get all data from an user
     app.get("/api/alldata", function(req, res) {
         db.Example.findAll({}).then(function(dbresult) {
             res.json(dbresult);
         });
     });
 
-    // Create a new example
-    app.post("/api/examples", function(req, res) {
-        db.Example.create(req.body).then(function(dbExample) {
-            res.json(dbExample);
-        });
+    //post a new stool log for user
+    app.post("/api/stool", function(req, res) {
+        //TODO: check for authenticated or not? if not throw error 401!
+        const userId = 1;
+        console.log(parseInt(req.body.score));
+        if(req.body && req.body.score && !isNaN(parseInt(req.body.score))){
+            db.User.findOne({
+                where:{
+                    id:userId
+                }
+            }).then(function(userResult) {
+                userResult.createStool({
+                    score:req.body.score,
+                    comment: req.body.comment? req.body.comment:null//TODO:sanitize the input
+                }).then(stool=>{
+                    res.json(stool);
+                });
+            });
+        }else{
+            res.status(400).send("invalid input");
+        }
     });
 
-    // Delete an example by id
-    app.delete("/api/examples/:id", function(req, res) {
+    // TODO: POST new water log
+    // app.post("/api/water", function(req, res) {
+    //     //TODO: check for authenticated or not? if not throw error 401!
+    //     const userId = 1;
+
+    //     if(req.body && req.body.score && !isNaN(parseInt(req.body.score))){
+    //         db.User.findOne({
+    //             where:{
+    //                 id:userId
+    //             }
+    //         }).then(function(userResult) {
+    //             userResult.createStool({
+    //                 score:req.body.score,
+    //                 comment: req.body.comment? req.body.comment:null//TODO:sanitize the input
+    //             }).then(stool=>{
+    //                 res.json(stool);
+    //             });
+    //         });
+    //     }else{
+    //         res.status(400).send("invalid input");
+    //     }
+    // });
+
+
+    // TODO: Delete an user by id
+    app.delete("/api/users/:id", function(req, res) {
+        //TODO: check for authenticated or not?
         db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
             res.json(dbExample);
         });
