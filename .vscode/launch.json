@@ -9,10 +9,7 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}/server.js",
-            "console": "integratedTerminal",
-            // "internalConsoleOptions": "neverOpen",
-            "runtimeExecutable": "nodemon",
-            // "restart": true
+            "console": "integratedTerminal"
         }
     ]
 }
