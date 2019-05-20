@@ -25,7 +25,7 @@
         <div class="row container z-depth-3 login-div">
             <h4 id="signup-header">Welcome! Let's get you signed up!</h4>
         
-            <form class="col s12" action="">
+            <form class="col s12"  method="POST">
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="username" type="text" class="validate" required="" aria-required="true">
@@ -40,8 +40,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <button id="loginBtn" class="waves-effect waves-light btn">Login</button>
-                        <button id="signupBtn" class="waves-effect waves-light btn">SignUp</button>
+                        <button id="loginBtn" class="waves-effect waves-light btn" type="submit" formaction="/login">Login</button>
+                        <button id="signupBtn" class="waves-effect waves-light btn" type="submit" formaction="/signup">SignUp</button>
                     </div>
                 </div>
             </form>
