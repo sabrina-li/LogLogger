@@ -28,28 +28,28 @@ app.use(passport.session());
 
 //Passport 'local' strategy configuration
 passport.use(new LocalStrategy(
-  function (username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) {
-        return done(err);
-      }
-      if (!user) {
-        return done(null, false, { message: "Incorrect username." });
-      }
-      if (!user.verifyPassword(password)) {
-        return done(null, false, { message: "Incorrect password." });
-      }
-      return done(null, user);
-    });
-  }
+    function (username, password, done) {
+        User.findOne({ username: username }, function (err, user) {
+            if (err) {
+                return done(err);
+            }
+            if (!user) {
+                return done(null, false, { message: "Incorrect username." });
+            }
+            if (!user.verifyPassword(password)) {
+                return done(null, false, { message: "Incorrect password." });
+            }
+            return done(null, user);
+        });
+    }
 ));
 
 // Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
+app.engine( 
+    "handlebars", 
+    exphbs({
+        defaultLayout: "main"
+    })
 );
 app.set("view engine", "handlebars");
 
@@ -63,21 +63,21 @@ require("./routes/htmlRoutes")(app);
 // });
 //example post route for login form, move this to htmlRoutes
 app.post("/login",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-    failureFlash: true
-  }));
+    passport.authenticate("local", {
+        successRedirect: "/",
+        failureRedirect: "/login",
+        failureFlash: true
+    }));
 //example post route for signup form
 app.post("/signup", function (req, res) {
-  var newUser = new User();
-  newUser.username = req.body.username;
-  //*generate hash for password?
-  newUser.password = req.body.password;
-  //*need validation to check for existing users
-  console.log(newUser.username + newUser.password);
-  //*need to add User model to MySQL database
-  res.end();
+    var newUser = new User();
+    newUser.username = req.body.username;
+    //*generate hash for password?
+    newUser.password = req.body.password;
+    //*need validation to check for existing users
+    console.log(newUser.username + newUser.password);
+    //*need to add User model to MySQL database
+    res.end();
 });
 
 var syncOptions = { force: false };
@@ -85,18 +85,22 @@ var syncOptions = { force: false };
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
 if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
+    syncOptions.force = true;
+}else if(!process.env.NODE_ENV){
+    syncOptions.force = true;
+    syncOptions.match = /_development$/;
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function () {
-  app.listen(PORT, function () {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
-  });
+db.sequelize.sync(syncOptions).then(function() {
+  db.User.create({username:"user",password:"pass"});
+    app.listen(PORT, function() {
+        console.log(
+            "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+            PORT,
+            PORT
+        );
+    });
 });
 
 module.exports = app;

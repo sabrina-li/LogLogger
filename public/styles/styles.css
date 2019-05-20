@@ -32,3 +32,16 @@ main{
   height: 100%;
   width: 100%;
 }
+
+#modalWater,#modalStool{
+  height: 120%;
+  /* overflow: scroll; */
+}
+
+.datepicker-modal {
+  width: 100%;
+}
+
+#error{
+  color: red;
+}
