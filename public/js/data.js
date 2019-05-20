@@ -18,8 +18,8 @@ $(document).ready(_ => {
     };
     const HandleError = res =>{
         console.log(res.status,res.responseText);
-        const errorDiv = $("div");
-        $(".modal-footer").append("Error Occurred: ",res.status," ",res.responseText);
+        $("#error").empty();
+        $("#error").append("Error Occurred: ",res.status," ",res.responseText);
         // errorDiv.css.color = "red";
         // errorDiv.text("Error Occurred: ",res.status," ",res.responseText);
     };

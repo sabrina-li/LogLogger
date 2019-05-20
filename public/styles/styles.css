@@ -41,3 +41,7 @@ main{
 .datepicker-modal {
   width: 100%;
 }
+
+#error{
+  color: red;
+}
