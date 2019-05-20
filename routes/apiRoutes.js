@@ -1,4 +1,5 @@
-var db = require("../models");
+const db = require("../models");
+const moment = require('moment');
 
 module.exports = function(app) {
     // TODO Get all data from an user
@@ -14,6 +15,7 @@ module.exports = function(app) {
         const userId = 1;
         console.log(parseInt(req.body.score));
         if(req.body && req.body.score && !isNaN(parseInt(req.body.score))){
+            convertTime(req.body);
             db.User.findOne({
                 where:{
                     id:userId
@@ -62,4 +64,16 @@ module.exports = function(app) {
             res.json(dbExample);
         });
     });
+};
+
+
+const convertTime = body=>{
+    let datetime = moment().format("YYYY-MM-DD HH:mm:ss");
+
+    if(body.date && body.time && body.ampm){
+        datetime = moment(body.date+ body.time + body.ampm, "MMM DD, YYYY hh a");
+    }else if(body.date){
+        datetime = moment(body.date, "MMM DD, YYYY");
+    }
+    return datetime.format("YYYY-MM-DD HH:mm:ss");
 };
