@@ -1,6 +1,5 @@
 require("dotenv").config();
 var express = require("express");
-var exphbs = require("express-handlebars");
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var session = require("express-session");
@@ -43,15 +42,6 @@ function errHandler(err) {
     console.log(err.code);
     return console.error(err.message);
 }
-
-// Handlebars
-app.engine(
-    "handlebars",
-    exphbs({
-        defaultLayout: "main"
-    })
-);
-app.set("view engine", "handlebars");
 
 // Routes
 require("./routes/apiRoutes")(app);

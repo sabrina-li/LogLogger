@@ -1,5 +1,5 @@
-module.exports = function (sequelize, Sequelize) {
-    var User = sequelize.define("users", {
+module.exports = function(sequelize, Sequelize) {
+    var User = sequelize.define("User", {
         username: {
             type: Sequelize.STRING,
             allowNull: false,
@@ -8,15 +8,15 @@ module.exports = function (sequelize, Sequelize) {
         password: {
             type: Sequelize.STRING,
             allowNull: false,
-            unique: true
         }
     });
 
-    User.associate = function (models) {
+    User.associate = function(models) {
         User.hasMany(models.Stool, {
             onDelete: "cascade"
         });
     };
 
     return User;
+
 };
