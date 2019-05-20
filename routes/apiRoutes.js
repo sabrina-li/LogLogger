@@ -17,13 +17,21 @@ const userId = 1;
 module.exports = function(app) {
     // TODO Get all data from an user
     // Get all examples
-    // app.get("/api/alldata", function(req, res) {
-    //     db.User.findOne({
-    //         where:{
-    //             id:userId
-    //         }
-    //     }).
-    // });
+    app.get("/api/alldata", function(req, res) {
+        db.User.findOne({
+            where:{
+                id:userId
+            }
+        }).then(function(userResult) {
+            let stoolPromise = userResult.getStools();
+            result={};
+            Promise.all([stoolPromise]).then(results=>{
+                console.log(results);
+                result.stool = results[0];
+                res.send(result);
+            });
+        });
+    });
 
 
     //post a new stool log for user
