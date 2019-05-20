@@ -12,23 +12,24 @@ const convertTime = body=>{
     return datetime.format("YYYY-MM-DD HH:mm:ss");
 };
 
-
+const userId = 1;
 
 module.exports = function(app) {
     // TODO Get all data from an user
     // Get all examples
     app.get("/api/alldata", function(req, res) {
-        db.Example.findAll({}).then(function(dbresult) {
-            res.json(dbresult);
-        });
+        db.User.findOne({
+            where:{
+                id:userId
+            }
+        }).
     });
 
 
     //post a new stool log for user
     app.post("/api/stool", function(req, res) {
         //TODO: check for authenticated or not? if not throw error 401!
-        const userId = 1;
-        
+
         if(req.body && req.body.score && !isNaN(parseInt(req.body.score))){
             db.User.findOne({
                 where:{
