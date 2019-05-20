@@ -1,6 +1,19 @@
 const db = require("../models");
 const moment = require('moment');
 
+
+const convertTime = body=>{
+    let datetime = moment();
+    if(body.date && body.time && body.ampm){
+        datetime = moment(body.date+ body.time + body.ampm, "MMM DD, YYYY hh a");
+    }else if(body.date){
+        datetime = moment(body.date, "MMM DD, YYYY");
+    }
+    return datetime.format("YYYY-MM-DD HH:mm:ss");
+};
+
+
+
 module.exports = function(app) {
     // TODO Get all data from an user
     app.get("/api/alldata", function(req, res) {
@@ -13,9 +26,8 @@ module.exports = function(app) {
     app.post("/api/stool", function(req, res) {
         //TODO: check for authenticated or not? if not throw error 401!
         const userId = 1;
-        console.log(parseInt(req.body.score));
+        
         if(req.body && req.body.score && !isNaN(parseInt(req.body.score))){
-            convertTime(req.body);
             db.User.findOne({
                 where:{
                     id:userId
@@ -23,6 +35,7 @@ module.exports = function(app) {
             }).then(function(userResult) {
                 userResult.createStool({
                     score:req.body.score,
+                    time:convertTime(req.body),
                     comment: req.body.comment? req.body.comment:null//TODO:sanitize the input
                 }).then(stool=>{
                     res.json(stool);
@@ -56,7 +69,6 @@ module.exports = function(app) {
     //     }
     // });
 
-
     // TODO: Delete an user by id
     app.delete("/api/users/:id", function(req, res) {
         //TODO: check for authenticated or not?
@@ -66,14 +78,3 @@ module.exports = function(app) {
     });
 };
 
-
-const convertTime = body=>{
-    let datetime = moment().format("YYYY-MM-DD HH:mm:ss");
-
-    if(body.date && body.time && body.ampm){
-        datetime = moment(body.date+ body.time + body.ampm, "MMM DD, YYYY hh a");
-    }else if(body.date){
-        datetime = moment(body.date, "MMM DD, YYYY");
-    }
-    return datetime.format("YYYY-MM-DD HH:mm:ss");
-};
