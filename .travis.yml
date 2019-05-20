@@ -7,4 +7,4 @@ cache:
   directories:
     - node_modules
 before_install:
-  - mysql -e 'CREATE DATABASE exampleDB_test;'
+  - mysql -e 'CREATE DATABASE stoolDB_test;'

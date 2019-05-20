@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="/styles/add_2.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <img id="logo" src="/images/logo.jpg">
+            <h3 id="title">Project No.2</h3>
+        </div>
+
+    </header>
+
+    <main>
+        <div class="container">
+            <div id="chart-row" class="z-depth-3 row">
+                <div id="chart-col" class="col s8">
+                    <canvas id="poopChart" width="100" height="100"></canvas>
+                </div>
+            </div>
+            <div class="add-button">
+                <div id="waterAddBtn" class="sub-button tl" data-target="modalWater"><i class="fas fa-tint "
+                        data-target="modalWater"></i></div>
+                <div id="stoolAddBtn" class="sub-button tr" data-target="modalStool"><i class="fas fa-poo "
+                        data-target="modalStool"></i></div>
+                <!-- <div class="sub-button bl">c</div> -->
+                <!-- <div class="sub-button br">d</div> -->
+            </div>
+
+            <!-- Modal Structure -->
+            <div id="modalWater" class="modal">
+                <div class="modal-content">
+                    <h4>Add Water</h4>
+                    <form action="/api/water" method="POST" class="addForm">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input name="intake" id="waterInput" type="text" class="validate" required="" aria-required="true">
+                                <label for="waterInput">Water Intake(ml)</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s5">
+                                <input name="date" id="waterDatePicker" type="text" class="datepicker">
+                                <label for="waterDatePicker">Choose Date</label>
+                            </div>
+                            <div class="input-field col s4">
+                                <select name="hour" >
+                                    <option value="" disabled selected>Choose Hour</option>
+                                    <option value="1">01</option>
+                                    <option value="2">02</option>
+                                    <option value="3">03</option>
+                                    <option value="4">04</option>
+                                    <option value="5">05</option>
+                                    <option value="6">06</option>
+                                    <option value="7">07</option>
+                                    <option value="8">08</option>
+                                    <option value="9">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                                <label>Time</label>
+                            </div>
+                            <div class="input-field col s3">
+                                <select name="ampm" >
+                                    <option value="AM">AM</option>
+                                    <option value="PM">PM</option>
+                                </select>
+                                <label>AM</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" name="submit" class="btn waves-effect waves-green">Submit</button>
+                        </div>
+                        <div id="error"></div>
+                    </form>
+                </div>
+
+            </div>
+
+            <div id="modalStool" class="modal">
+                <div class="modal-content">
+                    <h4>Add Stool</h4>
+                    <form action="/api/stool" method="POST" class="addForm">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input name="score" id="stoolInput" type="text" class="validate" required="" aria-required="true">
+                                <label for="stoolInput">Bristol Score(1-7)</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s5">
+                                <input name="date" id="stoolDatePicker" type="text" class="datepicker">
+                                <label for="stoolDatePicker">Choose Date</label>
+                            </div>
+                            <div class="input-field col s4">
+                                <select name="hour">
+                                    <option value="" disabled selected>Choose Hour</option>
+                                    <option value="1">01</option>
+                                    <option value="2">02</option>
+                                    <option value="3">03</option>
+                                    <option value="4">04</option>
+                                    <option value="5">05</option>
+                                    <option value="6">06</option>
+                                    <option value="7">07</option>
+                                    <option value="8">08</option>
+                                    <option value="9">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                                <label>Time</label>
+                            </div>
+                            <div class="input-field col s3">
+                                <select name="ampm">
+                                    <option value="AM">AM</option>
+                                    <option value="PM">PM</option>
+                                </select>
+                                <label>AM</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input name="comment" id="stoolComment" type="text">
+                                <label for="stoolComment">Comment</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" name="submit" class="btn waves-effect waves-green">Submit</button>
+                        </div>
+                        <div id="error"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://malsup.github.io/jquery.form.js"></script>
+    <!-- <script src="/js/dummy_data.js"></script> -->
+    <script src="/js/chart.js"></script>
+    <script src="/js/data.js"></script>
+</body>
+
+</html>
