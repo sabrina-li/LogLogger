@@ -37,3 +37,7 @@ main{
   height: 120%;
   /* overflow: scroll; */
 }
+
+.datepicker-modal {
+  width: 100%;
+}

@@ -9,10 +9,10 @@ $(document).ready(_ => {
     });
 
 
-    $("#waterAddBtn").on("click", function () {
-        console.log("clicked");
-        console.log($(this).attr("id"));
-    });
+    // $("#waterAddBtn").on("click", function () {
+    //     console.log("clicked");
+    //     console.log($(this).attr("id"));
+    // });
 
 
     $(".sub-button").on("mouseover", function (event) {
