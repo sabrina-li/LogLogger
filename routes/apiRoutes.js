@@ -27,6 +27,7 @@ const checkAuth = user=>{
 
 // Get all data from current user
 apiRouter.get("/alldata", (req, res, next)=> {
+    console.log("here");
     try{
         const userId = checkAuth(req.user);
 
@@ -105,7 +106,6 @@ apiRouter.post("/water", function(req, res) {
 // TODO: Delete an user by id
 apiRouter.delete("/api/users/:id", function (req, res) {
     //TODO: check for authenticated or not?
-
     // Delete an example by id
     app.delete("/api/examples/:id", function (req, res) {
 
@@ -115,6 +115,4 @@ apiRouter.delete("/api/users/:id", function (req, res) {
     });
 });
 
-
-
-module.exports = router;
+module.exports = apiRouter;

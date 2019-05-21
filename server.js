@@ -17,9 +17,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
 require("./routes/authRoutes")(app, passport);
+app.use("/api",require("./routes/apiRoutes"));
+require("./routes/htmlRoutes")(app);
+
+
 
 //import passport strategy
 require("./config/passport")(passport, db.User);
@@ -27,7 +29,7 @@ require("./config/passport")(passport, db.User);
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
-// clearing the `testdb`
+// clearing the `testdb` nad `developmentdb`
 if (process.env.NODE_ENV === "test") {
     syncOptions.force = true;
 } else if (!process.env.NODE_ENV) {
