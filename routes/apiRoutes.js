@@ -33,9 +33,8 @@ apiRouter.get("/alldata", (req, res, next)=> {
     }
 });
 
-
 //post a new stool log for user
-apiRouter.post("/stool",  (req, res, next)=> {
+apiRouter.post("/stool", (req, res, next)=> {
     const userId = Helper.checkAuth(req.user);
     if(userId){
         if (req.body && req.body.score && !isNaN(parseInt(req.body.score))) {
@@ -94,7 +93,7 @@ apiRouter.post("/water", (req, res, next)=> {
 });
 
 // TODO: Delete an user by id
-apiRouter.delete("/api/users/:id", function (req, res) {
+apiRouter.delete("/api/users/:id", (req, res)=> {
     //TODO: check for authenticated or not?
     app.delete("/api/examples/:id", function (req, res) {
         db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {

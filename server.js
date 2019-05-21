@@ -21,8 +21,6 @@ require("./routes/authRoutes")(app, passport);
 app.use("/api",require("./routes/apiRoutes"));
 app.use("/",require("./routes/htmlRoutes"));
 
-
-
 //import passport strategy
 require("./config/passport")(passport, db.User);
 
