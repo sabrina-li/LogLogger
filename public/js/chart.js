@@ -1,41 +1,51 @@
-const displayChart = _ => {
+const displayChart = (data) => {
 
-    const canvas = document.getElementById('poopChart');
-    const ctx = canvas.getContext('2d');
+    
+    const canvas = document.getElementById("poopChart");
+    const ctx = canvas.getContext("2d");
     // Make it visually fill the positioned parent
-    canvas.style.width ='100%';
-    canvas.style.height='100%';
+    canvas.style.width ="100%";
+    canvas.style.height="100%";
     // ...then set the internal size to match
     canvas.width  = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
 
-    const lightBlue = 'rgba(54, 162, 235, 0.2)',
-        blue = 'rgba(54, 162, 235, 1)',
-        lightOrange = 'rgba(255, 159, 64, 0.2)',
-        orange = 'rgba(255, 159, 64, 1)';
+    const lightBlue = "rgba(54, 162, 235, 0.2)",
+        blue = "rgba(54, 162, 235, 1)",
+        lightOrange = "rgba(255, 159, 64, 0.2)",
+        orange = "rgba(255, 159, 64, 1)";
 
-    const timeFormat = 'MM/DD/YYYY HH:mm';
+    const timeFormat = "YYYY-MM-DDTHH:mm:ss:SSSZ";
     moment.defaultFormat = timeFormat;
 
-    const waterData = dummyData.water;//from dummy_Data
-    const waterIntake = waterData.map(x => x.intake);
-    const waterTimes = waterData.map(x => x.time);
-    const stoolData = dummyData.stool;//from dummy_Data
-    const bristolScores = stoolData.map(x => {
-        let result = {};
-        result.y = x.score;
-        result.x = x.time;
-        result.comment = x.comment;
-        return result;
-    });
-    console.log(waterTimes);
-    console.log(bristolScores);
-
+    const waterData = data.water;//from dummy_Data
+    let waterIntake,waterTimes;
+    if(waterData){
+        waterData.sort((a,b)=>{
+            return moment(a.time)-moment(b.time);
+        });
+        waterIntake = waterData.map(x => x.intake);
+        waterTimes = waterData.map(x => x.time);
+    }
+    const stoolData = data.stool;//from dummy_Data
+    let bristolScores;
+    if(stoolData){
+        stoolData.sort((a,b)=>{
+            return moment(a.time)-moment(b.time);
+        });
+        bristolScores = stoolData.map(x => {
+            let result = {};
+            result.y = x.score;
+            result.x = x.time;
+            result.comment = x.comment;
+            return result;
+        });
+    }
 
     const myChart = new Chart(ctx, {
-        type: 'bar',
+        type: "bar",
         data: {
-            labels: waterTimes,
+            labels: bristolScores.map(x => x.x),
             datasets: [
                 {
                     label: 'Water Intake',
@@ -44,12 +54,13 @@ const displayChart = _ => {
                     borderColor: blue,
                     borderWidth: 1,
                     yAxisID: "y-water"
-                },{
-                    label: 'bristol score',
+                },
+                {
+                    label: "bristol score",
                     data: bristolScores,
                     backgroundColor:[lightOrange],
                     borderColor:[orange],
-                    type: 'line',
+                    type: "line",
                     yAxisID:"y-bristol"
                 }
             ]
@@ -57,63 +68,63 @@ const displayChart = _ => {
         options: {
             responsive: true,
             stacked: false,
-            hoverMode: 'index',
+            hoverMode: "index",
             title: {
                 display: true,
-                text: 'Stool Stats'
+                text: "Stool Stats"
             },
 
             scales: {
                 xAxes: [{
-                    type: 'time',
+                    type: "time",
                     time: {
                         parser: timeFormat,
                         // round: 'hour',
-                        tooltipFormat: 'll HH:mm',
-                        unit: 'hour',
+                        tooltipFormat: "ll HH:mm",
+                        // unit: "hour",
                         unitStepSize: 10,
                         displayFormats: {
-                            'millisecond': 'MMM-DD HHa',
-                            'second': 'MMM-DD HHa',
-                            'minute': 'MMM-DD HHa',
-                            'hour': 'MMM-DD HHa',
-                            'day': 'MMM-DD HHa',
-                            'week': 'MMM-DD HHa',
-                            'month': 'MMM-DD HHa',
-                            'quarter': 'MMM-DD HHa',
-                            'year': 'MMM-DD HHa'
-                         }
+                            "millisecond": "MMM-DD HHa",
+                            "second": "MMM-DD HHa",
+                            "minute": "MMM-DD HHa",
+                            "hour": "MMM-DD HHa",
+                            "day": "MMM-DD HHa",
+                            "week": "MMM-DD HHa",
+                            "month": "MMM-DD HHa",
+                            "quarter": "MMM-DD HHa",
+                            "year": "MMM-DD HHa"
+                        }
                     },
                     scaleLabel: {
                         display: true,
-                        labelString: 'Date'
+                        labelString: "Date"
                     }
                 }],
-                yAxes: [{
-                    type: "linear",
-                    // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                    display: true,
-                    position: "left",
-                    id: "y-water",
-                    ticks: {
-                        beginAtZero: true,
-                        min: 0
-                    }
-                }, {
-                    type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                    display: true,
-                    position: "right",
-                    id: "y-bristol",
-
-                    // grid line settings
-                    gridLines: {
-                        drawOnChartArea: false, // only want the grid lines for one axis to show up
+                yAxes: [
+                    {
+                        type: "linear",
+                        // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                        display: true,
+                        position: "left",
+                        id: "y-water",
+                        ticks: {
+                            beginAtZero: true,
+                            min: 0
+                        },
+                        gridLines: {
+                            drawOnChartArea: false, // only want the grid lines for one axis to show up
+                        },
                     },
-                    ticks: {
-                        beginAtZero: true,
-                        min: 0
-                    }
-                }],
+                    {
+                        type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                        display: true,
+                        position: "right",
+                        id: "y-bristol",
+                        ticks: {
+                            beginAtZero: true,
+                            min: 0
+                        }
+                    }],
             }
 
         }
@@ -125,14 +136,18 @@ const displayChart = _ => {
 const timeFormat = "YYYY-DD-MM HH:mm";
 
 function newDate(days) {
-    return moment().add(days, 'd').toDate();
+    return moment().add(days, "d").toDate();
 }
 
 function newDateString(days) {
-    return moment().add(days, 'd').format(timeFormat);
+    return moment().add(days, "d").format(timeFormat);
 }
-console.log(newDate(0));
-console.log(newDateString(0));
 
-displayChart();
+
+API.getAllData().then((res)=>{
+    console.log(res);
+    displayChart(res);
+});
+
+
 
