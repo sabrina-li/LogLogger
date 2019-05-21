@@ -24,9 +24,12 @@ module.exports = function(app) {
             }
         }).then(function(userResult) {
             let stoolPromise = userResult.getStools();
-            result={};
-            Promise.all([stoolPromise]).then(results=>{
+            let waterPromise = userResult.getWaters();
+            
+            Promise.all([stoolPromise,waterPromise]).then(results=>{
+                let result={};
                 result.stool = results[0];
+                result.water = results[1];
                 res.send(result);
             });
         });

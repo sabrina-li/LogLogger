@@ -1,6 +1,4 @@
 const displayChart = (data) => {
-
-    
     const canvas = document.getElementById("poopChart");
     const ctx = canvas.getContext("2d");
     // Make it visually fill the positioned parent
@@ -18,14 +16,19 @@ const displayChart = (data) => {
     const timeFormat = "YYYY-MM-DDTHH:mm:ss:SSSZ";
     moment.defaultFormat = timeFormat;
 
+    //TODO:clean up code!
     const waterData = data.water;//from dummy_Data
-    let waterIntake,waterTimes;
+
     if(waterData){
         waterData.sort((a,b)=>{
             return moment(a.time)-moment(b.time);
         });
-        waterIntake = waterData.map(x => x.intake);
-        waterTimes = waterData.map(x => x.time);
+        waterChartData = waterData.map(x => {
+            let result = {};
+            result.y = x.intake;
+            result.x = x.time;
+            return result;
+        });
     }
     const stoolData = data.stool;//from dummy_Data
     let bristolScores;
@@ -42,19 +45,12 @@ const displayChart = (data) => {
         });
     }
 
+
     const myChart = new Chart(ctx, {
-        type: "bar",
         data: {
-            labels: bristolScores.map(x => x.x),
+            type:'bar',
+            labels: waterChartData.map(x=>x.x),
             datasets: [
-                {
-                    label: 'Water Intake',
-                    data: waterIntake,
-                    backgroundColor: lightBlue,
-                    borderColor: blue,
-                    borderWidth: 1,
-                    yAxisID: "y-water"
-                },
                 {
                     label: "bristol score",
                     data: bristolScores,
@@ -62,6 +58,15 @@ const displayChart = (data) => {
                     borderColor:[orange],
                     type: "line",
                     yAxisID:"y-bristol"
+                },
+                {
+                    label: 'Water Intake',
+                    data: waterChartData.map(x=>x.y),
+                    backgroundColor: lightBlue,
+                    borderColor: blue,
+                    borderWidth: 1,
+                    type: "line",
+                    yAxisID: "y-water"
                 }
             ]
         },
@@ -73,13 +78,11 @@ const displayChart = (data) => {
                 display: true,
                 text: "Stool Stats"
             },
-
             scales: {
                 xAxes: [{
                     type: "time",
                     time: {
                         parser: timeFormat,
-                        // round: 'hour',
                         tooltipFormat: "ll HH:mm",
                         // unit: "hour",
                         unitStepSize: 10,
@@ -132,17 +135,6 @@ const displayChart = (data) => {
 
     return myChart;
 };
-
-const timeFormat = "YYYY-DD-MM HH:mm";
-
-function newDate(days) {
-    return moment().add(days, "d").toDate();
-}
-
-function newDateString(days) {
-    return moment().add(days, "d").format(timeFormat);
-}
-
 
 API.getAllData().then((res)=>{
     console.log(res);
