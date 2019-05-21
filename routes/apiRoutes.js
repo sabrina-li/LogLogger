@@ -1,4 +1,4 @@
-// "use strict";
+"use strict";
 
 const db = require("../models");
 const express = require("express");
@@ -6,6 +6,7 @@ const express = require("express");
 const apiRouter = express.Router();//for api routes
 const Helper = require("./utils/helper");
 
+//TODO: use async/await
 // Get all data from current user
 apiRouter.get("/alldata", (req, res, next)=> {
     const userId = Helper.checkAuth(req.user);
@@ -17,7 +18,7 @@ apiRouter.get("/alldata", (req, res, next)=> {
         }).then(function(userResult) {
             let stoolPromise = userResult.getStools();
             let waterPromise = userResult.getWaters();
-    
+
             Promise.all([stoolPromise,waterPromise]).then(results=>{
                 let result={};
                 result.stool = results[0];
@@ -96,7 +97,6 @@ apiRouter.post("/water", (req, res, next)=> {
 apiRouter.delete("/api/users/:id", function (req, res) {
     //TODO: check for authenticated or not?
     app.delete("/api/examples/:id", function (req, res) {
-
         db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
             res.json(dbExample);
         });
