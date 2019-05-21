@@ -1,5 +1,5 @@
 const db = require("../models");
-const moment = require('moment');
+const moment = require("moment");
 
 
 const convertTime = body=>{
@@ -15,7 +15,7 @@ const convertTime = body=>{
 
 const userId = 1;
 
-module.exports = function(app) {
+module.exports = function (app) {
     // TODO Get all data from an user
     // Get all examples
     app.get("/api/alldata", function(req, res) {
@@ -38,24 +38,24 @@ module.exports = function(app) {
 
 
     //post a new stool log for user
-    app.post("/api/stool", function(req, res) {
+    app.post("/api/stool", function (req, res) {
         //TODO: check for authenticated or not? if not throw error 401!
 
-        if(req.body && req.body.score && !isNaN(parseInt(req.body.score))){
+        if (req.body && req.body.score && !isNaN(parseInt(req.body.score))) {
             db.User.findOne({
-                where:{
-                    id:userId
+                where: {
+                    id: userId
                 }
-            }).then(function(userResult) {
+            }).then(function (userResult) {
                 userResult.createStool({
-                    score:req.body.score,
-                    time:convertTime(req.body),
-                    comment: req.body.comment? req.body.comment:null//TODO:sanitize the input
-                }).then(stool=>{
+                    score: req.body.score,
+                    time: convertTime(req.body),
+                    comment: req.body.comment ? req.body.comment : null//TODO:sanitize the input
+                }).then(stool => {
                     res.json(stool);
                 });
             });
-        }else{
+        } else {
             res.status(400).send("invalid input");
         }
     });
@@ -83,13 +83,13 @@ module.exports = function(app) {
     });
 
     // TODO: Delete an user by id
-    app.delete("/api/users/:id", function(req, res) {
+    app.delete("/api/users/:id", function (req, res) {
         //TODO: check for authenticated or not?
 
         // Delete an example by id
-        app.delete("/api/examples/:id", function(req, res) {
+        app.delete("/api/examples/:id", function (req, res) {
 
-            db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
+            db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
                 res.json(dbExample);
             });
         });
