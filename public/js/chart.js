@@ -21,12 +21,18 @@ const displayChart = (data) => {
     const waterData = data.water;//from dummy_Data
     let waterIntake,waterTimes;
     if(waterData){
+        waterData.sort((a,b)=>{
+            return moment(a.time)-moment(b.time);
+        });
         waterIntake = waterData.map(x => x.intake);
         waterTimes = waterData.map(x => x.time);
     }
     const stoolData = data.stool;//from dummy_Data
     let bristolScores;
     if(stoolData){
+        stoolData.sort((a,b)=>{
+            return moment(a.time)-moment(b.time);
+        });
         bristolScores = stoolData.map(x => {
             let result = {};
             result.y = x.score;
@@ -39,7 +45,7 @@ const displayChart = (data) => {
     const myChart = new Chart(ctx, {
         type: "bar",
         data: {
-            labels: stoolData.map(x => x.time),
+            labels: bristolScores.map(x => x.x),
             datasets: [
                 {
                     label: 'Water Intake',
@@ -75,7 +81,7 @@ const displayChart = (data) => {
                         parser: timeFormat,
                         // round: 'hour',
                         tooltipFormat: "ll HH:mm",
-                        unit: "hour",
+                        // unit: "hour",
                         unitStepSize: 10,
                         displayFormats: {
                             "millisecond": "MMM-DD HHa",
