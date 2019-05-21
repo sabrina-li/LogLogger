@@ -1,14 +1,25 @@
 const path = require("path");
 
-//TODO, read from DB to show the uer info
+//TODO, read from DB to show the user info
 module.exports = function (app) {
     // Load index page
     app.get("/", function (req, res) {
+        //if already logged in, redirect to user page instead of login/signup page
+        if (req.user) {
+            return res.redirect("/user");
+        }
         res.sendFile(path.join(__dirname, "../views/index.html"));
     });
 
     // Load example page and pass in an example by id
-    app.get("/user", function (req, res) {
+    app.get("/user", function (req, res, next) {
+        //check for authentication before sending user page
+        if (req.isAuthenticated()) {
+            return next();
+        }
+        //redirect to login/signup page if not authenticated
+        res.redirect("/");
+    }, function (req, res) {
         res.sendFile(path.join(__dirname, "../views/data.html"));
     });
 
