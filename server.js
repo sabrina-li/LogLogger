@@ -19,7 +19,7 @@ app.use(passport.session());
 // Routes
 require("./routes/authRoutes")(app, passport);
 app.use("/api",require("./routes/apiRoutes"));
-require("./routes/htmlRoutes")(app);
+app.use("/",require("./routes/htmlRoutes"));
 
 
 
