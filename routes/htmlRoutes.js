@@ -8,7 +8,7 @@ module.exports = function (app) {
     });
 
     // Load example page and pass in an example by id
-    app.get("/users/:userid", function (req, res) {
+    app.get("/user", function (req, res) {
         res.sendFile(path.join(__dirname, "../views/data.html"));
     });
 

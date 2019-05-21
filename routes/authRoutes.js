@@ -1,24 +1,24 @@
-module.exports = function (app, passport, db) {
+const path = require("path");
+
+module.exports = function (app, passport) {
     //POST routes for login and signup
     app.post("/login",
         passport.authenticate("local", {
-            successRedirect: "/data",
-            failureRedirect: "/index",
+            successRedirect: "/user",
+            failureRedirect: "/",
             failureFlash: true
-        }));
-    app.post("/signup", function (req, res) {
-        db.User.create({
-            username: req.body.username,
-            password: req.body.password
-        }, function (err, user) {
-            if (err) {
-                return errHandler(err);
-            }
-            return res.json({
-                id: user.id,
-                message: "User created"
-            });
+        }), function (req, res) {
+            res.redirect("/user");
+        }
+    );
+    app.post("/signup", passport.authenticate("local-signup", {
+        successRedirect: "/user",
+        failureRedirect: "/",
+        failureFlash: true
+    }));
+    app.get("/logout", function(req, res) {
+        req.session.destroy(function(err) {
+            res.redirect("/");
         });
-        res.end();
     });
 };
