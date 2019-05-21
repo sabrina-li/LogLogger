@@ -16,14 +16,6 @@ app.use(session({ secret: "temporary secret" }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Error handler function
-function errHandler(err) {
-    console.error("There was an error performing the operation");
-    console.log(err);
-    console.log(err.code);
-    return console.error(err.message);
-}
-
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
