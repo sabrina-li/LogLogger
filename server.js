@@ -93,7 +93,7 @@ if (process.env.NODE_ENV === "test") {
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
-  db.User.create({username:"user",password:"pass"});
+  db.User.create({username:"user",password:"pass"});//TODO: created for testing, to be removed
     app.listen(PORT, function() {
         console.log(
             "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
