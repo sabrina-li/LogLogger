@@ -3,9 +3,10 @@ const moment = require('moment');
 
 
 const convertTime = body=>{
+    console.log(body);
     let datetime = moment();
-    if(body.date && body.time && body.ampm){
-        datetime = moment(body.date+ body.time + body.ampm, "MMM DD, YYYY hh a");
+    if(body.date && body.hour && body.ampm){
+        datetime = moment(body.date+ body.hour + body.ampm, "MMM DD, YYYY hh a");
     }else if(body.date){
         datetime = moment(body.date, "MMM DD, YYYY");
     }
@@ -24,10 +25,12 @@ module.exports = function(app) {
             }
         }).then(function(userResult) {
             let stoolPromise = userResult.getStools();
-            result={};
-            Promise.all([stoolPromise]).then(results=>{
-                console.log(results);
+            let waterPromise = userResult.getWaters();
+            
+            Promise.all([stoolPromise,waterPromise]).then(results=>{
+                let result={};
                 result.stool = results[0];
+                result.water = results[1];
                 res.send(result);
             });
         });
@@ -57,28 +60,27 @@ module.exports = function(app) {
         }
     });
 
-    // TODO: POST new water log
-    // app.post("/api/water", function(req, res) {
-    //     //TODO: check for authenticated or not? if not throw error 401!
-    //     const userId = 1;
 
-    //     if(req.body && req.body.score && !isNaN(parseInt(req.body.score))){
-    //         db.User.findOne({
-    //             where:{
-    //                 id:userId
-    //             }
-    //         }).then(function(userResult) {
-    //             userResult.createStool({
-    //                 score:req.body.score,
-    //                 comment: req.body.comment? req.body.comment:null//TODO:sanitize the input
-    //             }).then(stool=>{
-    //                 res.json(stool);
-    //             });
-    //         });
-    //     }else{
-    //         res.status(400).send("invalid input");
-    //     }
-    // });
+    app.post("/api/water", function(req, res) {
+        //TODO: check for authenticated or not? if not throw error 401!
+
+        if(req.body && req.body.intake && !isNaN(parseInt(req.body.intake))){
+            db.User.findOne({
+                where:{
+                    id:userId
+                }
+            }).then(function(userResult) {
+                userResult.createWater({
+                    intake:req.body.intake,
+                    time:convertTime(req.body)
+                }).then(water=>{
+                    res.json(water);
+                });
+            });
+        }else{
+            res.status(400).send("invalid input");
+        }
+    });
 
     // TODO: Delete an user by id
     app.delete("/api/users/:id", function(req, res) {
