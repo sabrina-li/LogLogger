@@ -18,59 +18,60 @@ const displayChart = (data) => {
 
     //TODO:clean up code!
     const waterData = data.water;//from dummy_Data
-
+    let waterChartData, stoolChartData,timelineX=[];
     if(waterData){
+        timelineX = timelineX.concat(waterData.map(x=>x.time));
         waterData.sort((a,b)=>{
             return moment(a.time)-moment(b.time);
         });
-        waterChartData = waterData.map(x => {
+        waterChartData = waterData.map(water=>{
             let result = {};
-            result.y = x.intake;
-            result.x = x.time;
+            result.y = water.intake;
+            result.x = moment(water.time);
             return result;
         });
     }
     const stoolData = data.stool;//from dummy_Data
-    let bristolScores;
     if(stoolData){
+        timelineX = timelineX.concat(stoolData.map(x=>x.time));
         stoolData.sort((a,b)=>{
             return moment(a.time)-moment(b.time);
         });
-        bristolScores = stoolData.map(x => {
+        stoolChartData = stoolData.map(stool => {
             let result = {};
-            result.y = x.score;
-            result.x = x.time;
-            result.comment = x.comment;
+            result.y = stool.score;
+            result.x = moment(stool.time);
+            result.comment = stool.comment;
             return result;
         });
     }
-    const timelineX = waterChartData.map(x=>x.x).concat(bristolScores.map(x=>x.x));
-    console.log(timelineX.sort((x,y) =>moment(x)-moment(y)));
+
+    console.log(timelineX);
+    var chartData = {
+        // labels: timelineX,
+        datasets: [{
+            type: 'line',
+            label: 'Bristol Score',
+            backgroundColor:lightOrange,
+            borderColor:orange,
+            fill: false,
+            data: stoolChartData,
+            yAxisID: "y-bristol"
+        }, {
+            type: 'bar',
+            label: 'Water Intake',
+            backgroundColor: lightBlue,
+            borderColor: blue,
+            data: waterChartData,
+            borderWidth: 2,
+            yAxisID: "y-water",
+        }]
+    };
+
 
     const myChart = new Chart(ctx, {
-        type:"bar",
-        data: {
-            labels: timelineX,
-            datasets: [
-                {
-                    label: "bristol score",
-                    data: bristolScores,
-                    backgroundColor:[lightOrange],
-                    borderColor:[orange],
-                    type: "line",
-                    yAxisID:"y-bristol"
-                },
-                {
-                    label: 'Water Intake',
-                    data: waterChartData,
-                    backgroundColor: lightBlue,
-                    borderColor: blue,
-                    borderWidth: 1,
-                    // type: "line",
-                    yAxisID: "y-water"
-                }
-            ]
-        },
+        type: 'bar',
+        data: chartData,
         options: {
             responsive: true,
             stacked: false,
@@ -111,9 +112,16 @@ const displayChart = (data) => {
                         display: true,
                         position: "left",
                         id: "y-water",
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Water (ml)",
+                        },
                         ticks: {
                             beginAtZero: true,
-                            min: 0
+                            min: 0,
+                            callback: function(value, index, values) {
+                                return value+"ml";
+                            }
                         },
                         gridLines: {
                             drawOnChartArea: false, // only want the grid lines for one axis to show up
@@ -124,13 +132,18 @@ const displayChart = (data) => {
                         display: true,
                         position: "right",
                         id: "y-bristol",
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Bristol Score",
+                        },
                         ticks: {
                             beginAtZero: true,
-                            min: 0
+                            min: 0,
+                            max: 7
                         }
                     }],
             }
-
+        
         }
     });
 
