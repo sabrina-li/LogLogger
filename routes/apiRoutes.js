@@ -3,9 +3,10 @@ const moment = require('moment');
 
 
 const convertTime = body=>{
+    console.log(body);
     let datetime = moment();
-    if(body.date && body.time && body.ampm){
-        datetime = moment(body.date+ body.time + body.ampm, "MMM DD, YYYY hh a");
+    if(body.date && body.hour && body.ampm){
+        datetime = moment(body.date+ body.hour + body.ampm, "MMM DD, YYYY hh a");
     }else if(body.date){
         datetime = moment(body.date, "MMM DD, YYYY");
     }
@@ -62,7 +63,7 @@ module.exports = function(app) {
 
     app.post("/api/water", function(req, res) {
         //TODO: check for authenticated or not? if not throw error 401!
-console.log(req.body);
+
         if(req.body && req.body.intake && !isNaN(parseInt(req.body.intake))){
             db.User.findOne({
                 where:{

@@ -44,12 +44,13 @@ const displayChart = (data) => {
             return result;
         });
     }
-
+    const timelineX = waterChartData.map(x=>x.x).concat(bristolScores.map(x=>x.x));
+    console.log(timelineX.sort((x,y) =>moment(x)-moment(y)));
 
     const myChart = new Chart(ctx, {
+        type:"bar",
         data: {
-            type:'bar',
-            labels: waterChartData.map(x=>x.x),
+            labels: timelineX,
             datasets: [
                 {
                     label: "bristol score",
@@ -61,11 +62,11 @@ const displayChart = (data) => {
                 },
                 {
                     label: 'Water Intake',
-                    data: waterChartData.map(x=>x.y),
+                    data: waterChartData,
                     backgroundColor: lightBlue,
                     borderColor: blue,
                     borderWidth: 1,
-                    type: "line",
+                    // type: "line",
                     yAxisID: "y-water"
                 }
             ]
@@ -84,8 +85,8 @@ const displayChart = (data) => {
                     time: {
                         parser: timeFormat,
                         tooltipFormat: "ll HH:mm",
-                        // unit: "hour",
-                        unitStepSize: 10,
+                        // unit:"day",
+                        // unitStepSize: 1,
                         displayFormats: {
                             "millisecond": "MMM-DD HHa",
                             "second": "MMM-DD HHa",
@@ -100,7 +101,7 @@ const displayChart = (data) => {
                     },
                     scaleLabel: {
                         display: true,
-                        labelString: "Date"
+                        labelString: "Date-Time"
                     }
                 }],
                 yAxes: [
