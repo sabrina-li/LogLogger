@@ -12,6 +12,12 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+
+//Handlebars
+var exphbs = require("express-handlebars");
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
 //passport, session, and flash middleware for authentication, persistent login, and error-handling
 app.use(session({ secret: "temporary secret" }));
 app.use(passport.initialize());
