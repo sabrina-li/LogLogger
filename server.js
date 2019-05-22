@@ -2,7 +2,6 @@ require("dotenv").config();
 var express = require("express");
 var passport = require("passport");
 var session = require("express-session");
-process.env.NODE_ENV = "test";
 var db = require("./models");
 
 var app = express();
