@@ -19,7 +19,8 @@ module.exports = function (app) {
         if (flashMessage){
             console.log(flashMessage);
         }
-        res.sendFile(path.join(__dirname, "../views/index.html"));
+        // res.sendFile(path.join(__dirname, "../views/index.html"));
+        res.render("index");
     });
 
     // Load example page and pass in an example by id
@@ -31,7 +32,8 @@ module.exports = function (app) {
         //redirect to login/signup page if not authenticated
         res.redirect("/");
     }, function (req, res) {
-        res.sendFile(path.join(__dirname, "../views/data.html"));
+        // res.sendFile(path.join(__dirname, "../views/data.html"));
+        res.render("data");
     });
 
     // Render 404 page for any unmatched routes
