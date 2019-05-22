@@ -1,4 +1,4 @@
-const dummyData = {
+const dummyData = {//data expected by frontend api
     stool:[
         {
             score:1,

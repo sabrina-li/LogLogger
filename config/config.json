@@ -8,7 +8,7 @@
   },
   "test": {
     "username": "root",
-    "password": null,
+    "password": "root",
     "database": "stoolDB_test",
     "host": "localhost",
     "dialect": "mysql",

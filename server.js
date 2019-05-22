@@ -2,6 +2,7 @@ require("dotenv").config();
 var express = require("express");
 var passport = require("passport");
 var session = require("express-session");
+process.env.NODE_ENV = "test";
 var db = require("./models");
 
 var app = express();
@@ -34,7 +35,7 @@ if (process.env.NODE_ENV === "test") {
     syncOptions.force = true;
     syncOptions.match = /_development$/;
 }
-
+console.log(syncOptions);
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function () {
     app.listen(PORT, function () {
