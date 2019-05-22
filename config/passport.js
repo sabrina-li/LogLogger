@@ -10,6 +10,13 @@ module.exports = function (passport, User) {
         passwordField: "password",
         passReqToCallback: true
     }, function (req, username, password, done) {
+        // if any fields are empty, set flash message
+        if (username.trim().length === 0) {
+            return done(null, false, req.flash("auth", "Username is required."));
+        }
+        if (password.trim().length === 0) {
+            return done(null, false, req.flash("auth", "Password is required."));
+        }
         var generateHash = function (password) {
             return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
         };
@@ -18,20 +25,18 @@ module.exports = function (passport, User) {
                 username: username
             }
         }).then(function (user) {
+            //if username is already taken, set flash message
             if (user) {
-                return done(null, false, {
-                    message: "That username is already taken."
-                });
+                return done(null, false, req.flash("auth", "That username is already taken."));
             } else {
                 var userPassword = generateHash(password);
                 User.create({
                     username: username,
                     password: userPassword
                 }).then(function (newUser) {
+                    //set flash message for other errors
                     if (!newUser) {
-                        return done(null, false, {
-                            message: "There was an error creating User."
-                        });
+                        return done(null, false, req.flash("auth", "There was an error creating User."));
                     } else {
                         return done(null, newUser);
                     }
@@ -47,6 +52,13 @@ module.exports = function (passport, User) {
         passwordField: "password",
         passReqToCallback: true
     }, function (req, username, password, done) {
+        // if any fields are empty, set flash message
+        if (username.trim().length === 0) {
+            return done(null, false, req.flash("auth", "Username is required."));
+        }
+        if (password.trim().length === 0) {
+            return done(null, false, req.flash("auth", "Password is required."));
+        }
         //bCrypt checks input password hash against actual password hash, returns Boolean
         //do not use native JavaScript '===' comparison because of "timing attack" vulnerability
         var checkPasswordValid = function (realPassword, inputPassword) {
@@ -57,15 +69,12 @@ module.exports = function (passport, User) {
                 username: username
             }
         }).then(function (user) {
+            //if username or password doesn't match, set flash message
             if (!user) {
-                return done(null, false, {
-                    message: "User does not exist."
-                });
+                return done(null, false, req.flash("auth", "User does not exist."));
             }
             if (!checkPasswordValid(user.password, password)) {
-                return done(null, false, {
-                    message: "Incorrect password."
-                });
+                return done(null, false, req.flash("auth", "Incorrect password."));
             }
             //if correct user & password, user gets logged in
             var userData = user.get();
@@ -73,9 +82,8 @@ module.exports = function (passport, User) {
             //catch errors
         }).catch(function (err) {
             console.log("Login Error: " + err);
-            return done(null, false, {
-                message: "There was an error logging in."
-            });
+            //set flash message for other errors
+            return done(null, false, req.flash("auth", "There was an error logging in."));
         });
     }
     ));

@@ -8,6 +8,17 @@ module.exports = function (app) {
         if (req.user) {
             return res.redirect("/user");
         }
+        //get all flash messages
+        const authFlashArray = req.flash("auth");
+        let flashMessage;
+        for (i=0;i<authFlashArray.length;i++){
+            if (authFlashArray[i].length > 0){
+                flashMessage = authFlashArray[i];
+            }
+        }
+        if (flashMessage){
+            console.log(flashMessage);
+        }
         res.sendFile(path.join(__dirname, "../views/index.html"));
     });
 
