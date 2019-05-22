@@ -4,6 +4,7 @@ const express = require("express");
 const htmlRouter = express.Router();//for api routes
 
 //TODO, read from DB to show the user info
+
 // Load index page
 htmlRouter.get("/", function (req, res) {
     //if already logged in, redirect to user page instead of login/signup page
