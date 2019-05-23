@@ -53,12 +53,15 @@ header{
   background-color: white;
 }
 
+#poopChart{
+    position: relative; 
+}
 #chart-row{
   height: 60vh;
 }
-#chart-col{
+#chart-col{ 
   height: 100%;
-  width: 100%;
+  width: 90%;
 }
 
 #modalWater,#modalStool{
