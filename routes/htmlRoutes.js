@@ -5,6 +5,13 @@ const htmlRouter = express.Router();//for api routes
 
 // Load index page
 htmlRouter.get("/", function (req, res) {
+    //Home page for web
+    res.render("index",{
+        loginout:"Login"
+    });
+});
+
+htmlRouter.get("/login", function (req, res) {
     //if already logged in, redirect to user page instead of login/signup page
     if (req.isAuthenticated()) {
         return res.redirect("/user");
@@ -17,7 +24,7 @@ htmlRouter.get("/", function (req, res) {
             flashMessage = authFlashArray[i];
         }
     }
-    res.render("index",{
+    res.render("login",{
         loginout:"Login",
         errorMessage:flashMessage
     });

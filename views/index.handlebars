@@ -1,33 +1,49 @@
-    <main>
-        <div class="row z-depth-3 login-div container">
-            <h4 id="signup-header">Welcome! Let's get you signed up!</h4>
-        
-            <form class="col s12"  method="POST">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input name="username" id="username" type="text" class="validate" required="" aria-required="true">
-                        <label for="username">Username</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input name="password" id="password" type="password" class="validate" required="" aria-required="true">
-                        <label for="password">Password</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <button id="loginBtn" class="waves-effect waves-light btn" type="submit" formaction="/login">Login</button>
-                        <button id="signupBtn" class="waves-effect waves-light btn" type="submit" formaction="/signup">SignUp</button>
-                    </div>
+<main >
+    <div class="image-container">
+        <div class="text">YOU ARE WHAT YOU EAT</div>
+    </div>
 
-                    {{#if errorMessage}}
-                        <div class="error">{{errorMessage}}</div>
-                    {{/if}}
-                    
-                </div>
-            </form>
-        </div>
-    </main>
 
-<script src="js/index.js"></script>
+<div class="wrapper">
+	<div class="cardContainer" id="c0">
+		<div class="cardImage" id="i0">
+		</div>
+		<div class="story" id="s0">
+			<div class="info">
+			<h3>Stool Logger</h3>
+			<p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. In cumque reiciendis quod provident quaerat laudantium consequatur officia illo recusandae. Sapiente neque dolorem, dicta voluptate error unde autem delectus at suscipit.</p>
+			</div>
+		</div>
+	</div>
+	<div class="cardContainer" id="c1">
+		<div class="cardImage" id="i1">
+		</div>
+		<div class="story" id="s1">
+			<div class="info">
+				<h3>Water Intake</h3>
+			<p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur asperiores saepe facere repellendus quia deleniti! Rem sapiente quod doloremque, suscipit natus saepe illum provident eveniet fuga fugiat adipisci recusandae corporis?</p>
+			</div>
+		</div>
+	</div>
+	<div class="cardContainer" id="c2">
+		<div class="cardImage" id="i2">
+		</div>
+		<div class="story" id="s2">
+			<div class="info">
+			<h3>Food Log</h3>
+			<p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores dolores temporibus eum minus dicta, qui fugiat libero, a, ullam harum quidem sit quas quod molestiae eligendi porro hic! Voluptatibus, velit!</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div><br><br><br><br><br><br><br><br><br><br><br></div>
+	
+
+</main>
+
+
+
+<script src="/js/index.js"></script>
+
+
