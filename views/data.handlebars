@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" name="submit" class="btn waves-effect waves-green">Submit</button>
+                            <button type="submit" name="submit" class="btn waves-effect">Submit</button>
                         </div>
                         <div class="error"></div>
                     </form>
@@ -71,8 +71,11 @@
                     <form action="/api/stool" method="POST" class="addForm">
                         <div class="row">
                             <div class="input-field col s12">
-                                <input name="score" id="stoolInput" type="text" class="validate" required="" aria-required="true">
-                                <label for="stoolInput">Bristol Score(1-7)</label>
+                                <p><label for="stool-slider">Bristol Score(1-7)</label></p>
+                                <p class="range-field">
+                                    <input name="score" id="stool-slider" type="range" min="1" max="7" class="tooltipped" data-position="bottom">
+                                </p>
+                                
                             </div>
                         </div>
                         <div class="row">
@@ -113,7 +116,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" name="submit" class="btn waves-effect waves-green">Submit</button>
+                            <button type="submit" name="submit" class="btn waves-effect">Submit</button>
                         </div>
                         <div id="error"></div>
                     </form>

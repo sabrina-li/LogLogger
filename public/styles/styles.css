@@ -52,6 +52,12 @@ header{
   color:#F56F30;
   background-color: white;
 }
+.waves-effect .waves-ripple {
+  /* The alpha value allows the text and background color
+  of the button to still show through. */
+   background-color: #795548 0.5;
+ }
+        
 
 #poopChart{
     position: relative; 
