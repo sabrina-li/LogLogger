@@ -1,13 +1,16 @@
 const express = require("express");
-const htmlRouter = express.Router();//for api routes
+const htmlRouter = express.Router();//for html routes
+const Helper = require("./utils/helper");
 
 //TODO, read from DB to show the user info
 
 // Load index page
 htmlRouter.get("/", function (req, res) {
     //Home page for web
+    console.log(Helper.cardsData());
     res.render("index",{
-        loginout:"Login"
+        loginout:"Login",
+        cards:Helper.cardsData()
     });
 });
 

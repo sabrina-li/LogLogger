@@ -3,7 +3,7 @@ html,body{
   width: 100%;
 }
 .container{
-  position: relative;
+	position: relative;
 }
 #logo{
   width: 100px;
@@ -13,29 +13,35 @@ html,body{
   margin-right: auto;
   transform:  translateY(20px);
 }
-#title{
+header{
+	/* background: #795548; */
+	border-bottom: 5px solid #F56F30;
+	margin-bottom: 20px;
+  }
+.headerText{
+  font-size: 1.2rem;
   position: absolute;
   top: 10px;
+  left: 0;
+  margin: 1.0933333333rem 0 .656rem 0;
+  font-weight: bold;
+  color: #795548;
+  font-size: 1.2rem;
 }
 .loginoutBtn{
-  position: absolute;
-  top: 10px;
+  left: auto;
   right: 0;
-  margin: 1.0933333333rem 0 .656rem 0;
+}
+.headerText:hover{
+	color: #F56F30;
 }
 
-header{
-  border-bottom: 1px solid #795548;
-}
+
 
 #signup-header{
   text-align: center;
 }
 
-main{
-  padding-top: 30px;
-  height: 100%;
-}
 
 .login-div{
   padding: 10px;
@@ -64,25 +70,35 @@ main{
 
 .image-container {
   width: 100%;
-  height: 90%;
-  background-image: url("../images/colorful_snack_board.jpg"); /* The image used - important! */
+  height: 60vw;
+  background-image: url("https://images.fineartamerica.com/images-medium-large-5/twelve-colorful-foods-collage-jen-norton.jpg"); /* The image used - important! */
   background-size: cover; 
   overflow: hidden;
-  /* position: relative; Needed to position the cutout text in the middle of the image */
+  margin-bottom: 40px;
+  position: relative; 
 }
 
 .text {
-  background-color: white;
-  color: black;
-  font-size: 10vw; /* Responsive font size */
-  font-weight: bold;
-  margin: 0 auto; /* Center the text container */
-  padding: 10px;
-  width: 50%;
-  text-align: center; /* Center text */
-  /* position: relative; Position text */
-  /* top: 50%; Position text in the middle */
-  /* left: 50%; Position text in the middle */
-  /* transform: translate(-50%, -50%); Position text in the middle */
-  mix-blend-mode: screen; /* This makes the cutout text possible */
+	background-color: white;
+	color: black;
+	font-size: 9vw; /* Responsive font size */
+	font-weight: bold;
+	margin: 0 auto; /* Center the text container */
+	padding: 10px;
+	width: 50%;
+	height: fit-content;
+	text-align: center; /* Center text */
+	mix-blend-mode: screen; /* This makes the cutout text possible */
+}
+
+.card .card-image .card-title{
+    background: white;
+    color: black;
+    width: 100%;
+    padding: 0 24px 0 24px; 
+}
+
+.page-footer{
+	background-color: #795548;
+	border-top: 5px solid #F56F30
 }

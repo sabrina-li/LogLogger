@@ -1,49 +1,25 @@
-<main >
+<main>
     <div class="image-container">
-        <div class="text">YOU ARE WHAT YOU EAT</div>
+        <div class="text">PROJECT NO.2</div>
     </div>
 
-
-<div class="wrapper">
-	<div class="cardContainer" id="c0">
-		<div class="cardImage" id="i0">
-		</div>
-		<div class="story" id="s0">
-			<div class="info">
-			<h3>Stool Logger</h3>
-			<p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. In cumque reiciendis quod provident quaerat laudantium consequatur officia illo recusandae. Sapiente neque dolorem, dicta voluptate error unde autem delectus at suscipit.</p>
-			</div>
-		</div>
-	</div>
-	<div class="cardContainer" id="c1">
-		<div class="cardImage" id="i1">
-		</div>
-		<div class="story" id="s1">
-			<div class="info">
-				<h3>Water Intake</h3>
-			<p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur asperiores saepe facere repellendus quia deleniti! Rem sapiente quod doloremque, suscipit natus saepe illum provident eveniet fuga fugiat adipisci recusandae corporis?</p>
-			</div>
-		</div>
-	</div>
-	<div class="cardContainer" id="c2">
-		<div class="cardImage" id="i2">
-		</div>
-		<div class="story" id="s2">
-			<div class="info">
-			<h3>Food Log</h3>
-			<p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores dolores temporibus eum minus dicta, qui fugiat libero, a, ullam harum quidem sit quas quod molestiae eligendi porro hic! Voluptatibus, velit!</p>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div><br><br><br><br><br><br><br><br><br><br><br></div>
-	
-
+    <div class="container">
+        <div class="row">
+            {{#each cards}}
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="/images/{{imgFile}}.jpg" width="100%">
+                        <span class="card-title">{{title}}</span>
+                    </div>
+                    <div class="card-content">
+                        <p>{{content}}</p>
+                    </div>
+                </div>
+            </div>
+             {{/each}}
+        </div>
+    </div>
 </main>
 
-
-
 <script src="/js/index.js"></script>
-
-
