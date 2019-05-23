@@ -94,10 +94,7 @@ describe("API Controller", (done) => {
         // request = chai.request(server);
         return db.sequelize.sync({ force: true, match: /_test$/ });
     });
-    
     it("should get all data from user, only stool in DB", (done) => {
-        // APIController.getAllDataFromUser(req, res, next);
-        // expect(res).to.be.false;
         const req = {
             user: {
                 id: 1
@@ -110,7 +107,7 @@ describe("API Controller", (done) => {
         // const time = Date("2019-05-16T05:00:00.000Z");
         const time = new Date("2019-05-16T05:00:00.000Z");
 
-        let res = {
+        let next, res = {
             send: function(arg) { 
                 this.sendCalledWith = arg;
                 expect(this.sendCalledWith.water[0].dataValues).to.include(water);
@@ -119,21 +116,17 @@ describe("API Controller", (done) => {
                 done();
             }
         };
-        let next;
+
         //Create data in DB
-        db.User.create({ username: "test", password: "test" })
-            .then(newUser => {
-
-                newUser.createWater({
-                    intake: 100,
-                    time: "05/16/2019 01:00"
-                })
-                    .then(water => {
-                        APIController.getAllDataFromUser(req,res,next);
-                    });
+        db.User.create({ username: "test", password: "test" }).then(newUser => {
+            newUser.createWater({
+                intake: 100,
+                time: "05/16/2019 01:00"
+            }).then(water => {
+                APIController.getAllDataFromUser(req,res,next);
             });
+        });
     });
-
 
 });
 
