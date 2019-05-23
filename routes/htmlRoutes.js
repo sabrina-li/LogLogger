@@ -1,16 +1,23 @@
-const path = require("path");
-
 const express = require("express");
 const htmlRouter = express.Router();//for api routes
 
 //TODO, read from DB to show the user info
+
 // Load index page
 htmlRouter.get("/", function (req, res) {
     //if already logged in, redirect to user page instead of login/signup page
-    if (req.user) {
+    if (req.isAuthenticated()) {
         return res.redirect("/user");
     }
-    res.sendFile(path.join(__dirname, "../views/index.html"));
+    //get all flash messages
+    const authFlashArray = req.flash("auth");
+    let flashMessage;
+    for (i=0;i<authFlashArray.length;i++){
+        if (authFlashArray[i].length > 0){
+            flashMessage = authFlashArray[i];
+        }
+    }
+    res.render("index",{errorMessage:flashMessage});
 });
 
 // Load example page and pass in an example by id
@@ -22,13 +29,7 @@ htmlRouter.get("/user", function (req, res, next) {
     //redirect to login/signup page if not authenticated
     res.redirect("/");
 }, function (req, res) {
-    res.sendFile(path.join(__dirname, "../views/data.html"));
+    res.render("data");
 });
-
-// Redirect to home page for any unmatched routes
-htmlRouter.get("*", function (req, res) {
-    return res.redirect("/");
-});
-
 
 module.exports = htmlRouter;
