@@ -17,7 +17,10 @@ htmlRouter.get("/", function (req, res) {
             flashMessage = authFlashArray[i];
         }
     }
-    res.render("index",{errorMessage:flashMessage});
+    res.render("index",{
+        loginout:"Login",
+        errorMessage:flashMessage
+    });
 });
 
 // Load example page and pass in an example by id
@@ -29,7 +32,9 @@ htmlRouter.get("/user", function (req, res, next) {
     //redirect to login/signup page if not authenticated
     res.redirect("/");
 }, function (req, res) {
-    res.render("data");
+    res.render("data",{
+        loginout:"Logout"
+    });
 });
 
 module.exports = htmlRouter;
