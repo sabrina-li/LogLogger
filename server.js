@@ -38,11 +38,13 @@ var syncOptions = { force: false };
 // clearing the `testdb` nad `developmentdb`
 if (process.env.NODE_ENV === "test") {
     syncOptions.force = true;
+    syncOptions.match = /_test$/;
 } else if (!process.env.NODE_ENV) {
     syncOptions.force = true;
     syncOptions.match = /_development$/;
 }
-console.log(syncOptions);
+
+
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function () {
     app.listen(PORT, function () {

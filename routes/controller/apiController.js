@@ -17,6 +17,7 @@ class APIController {
                     let result={};
                     result.stool = results[0];
                     result.water = results[1];
+                    // console.log(result);
                     res.send(result);
                 });
             }).catch(err=>{
