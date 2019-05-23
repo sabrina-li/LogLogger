@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
     </link>
 
 </head>
@@ -15,7 +15,7 @@
 <body>
     <header>
         <div class="container">
-            <img id="logo" src="/images/logo.jpg">
+            <img id="logo" src="images/logo.jpg">
             <h3 id="title">Project No.2</h3>
         </div>
         
@@ -25,33 +25,20 @@
         <div class="row container z-depth-3 login-div">
             <h4 id="signup-header">Welcome! Let's get you signed up!</h4>
         
-            <form class="col s12"  method="POST">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input name="username" id="username" type="text" class="validate" required="" aria-required="true">
-                        <label for="username">Username</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input name="password" id="password" type="password" class="validate" required="" aria-required="true">
-                        <label for="password">Password</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <button id="loginBtn" class="waves-effect waves-light btn" type="submit" formaction="/login">Login</button>
-                        <button id="signupBtn" class="waves-effect waves-light btn" type="submit" formaction="/signup">SignUp</button>
-                    </div>
-                </div>
-            </form>
+            <div id="front-form"></div>
+            
         </div>
     </main>
 
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!--For the above two script tags, replace development.js with production.min.js when it is deployed-->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="js/API.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/front_form.js" type="text/javascript"></script>
 </body>
 
 </html>

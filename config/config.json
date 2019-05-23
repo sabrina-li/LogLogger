@@ -2,7 +2,8 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "stoolDB_development",
+    "database": "stoolsDB_development",
+    "port": 8889,
     "host": "localhost",
     "dialect": "mysql"
   },
