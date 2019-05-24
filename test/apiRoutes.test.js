@@ -94,6 +94,7 @@ describe("API Controller", (done) => {
         // request = chai.request(server);
         return db.sequelize.sync({ force: true, match: /_test$/ });
     });
+
     it("should get all data from user, only stool in DB", (done) => {
         const req = {
             user: {
@@ -109,7 +110,6 @@ describe("API Controller", (done) => {
 
         let next, res = {
             send: function(arg) { 
-                this.sendCalledWith = arg;
                 expect(this.sendCalledWith.water[0].dataValues).to.include(water);
                 expect(this.sendCalledWith.water[0].time).to.equalDate(time);
                 expect(this.sendCalledWith.stool).to.have.lengthOf(0);
@@ -126,6 +126,34 @@ describe("API Controller", (done) => {
                 APIController.getAllDataFromUser(req,res,next);
             });
         });
+    });
+
+    it("should POST water data to DB", (done) => {
+        const req = {
+            user: {
+                id: 1
+            },
+            body:{
+                score:6,
+                time:"05/17/2019 14:00",
+                comment:"???"
+            }
+        };
+        // const time = Date("2019-05-16T05:00:00.000Z");
+        const time = new Date("2019-05-16T05:00:00.000Z");
+
+        let next, res = {
+            json: function(arg) { 
+                console.log(arg);
+
+                // expect(this.sendCalledWith.water[0].dataValues).to.include(water);
+                // expect(this.sendCalledWith.water[0].time).to.equalDate(time);
+                // expect(this.sendCalledWith.stool).to.have.lengthOf(0);
+                done();
+            }
+        };
+
+       APIController.postStoolDataForUser(req,res,next);
     });
 
 });
