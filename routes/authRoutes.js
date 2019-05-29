@@ -4,12 +4,12 @@ module.exports = function (app, passport) {
     //POST routes for login and signup
     app.post("/login", passport.authenticate("local-login", {
         successRedirect: "/user",
-        failureRedirect: "/",
+        failureRedirect: "/login",
         failureFlash: true
     }));
     app.post("/signup", passport.authenticate("local-signup", {
         successRedirect: "/user",
-        failureRedirect: "/",
+        failureRedirect: "/login",
         failureFlash: true
     }));
     app.get("/logout", function (req, res) {

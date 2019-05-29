@@ -124,23 +124,18 @@
                 </form>
             </div>
 
-        </div>
-
-        <div id="modalStool" class="modal">
-            <div class="modal-content">
-                <h4>Add Stool</h4>
-                <form action="/api/stool" method="POST" class="addForm">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input name="score" id="stoolInput" type="text" class="validate" required=""
-                                aria-required="true">
-                            <label for="stoolInput">Bristol Score(1-7)</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s5">
-                            <input name="date" id="stoolDatePicker" type="text" class="datepicker">
-                            <label for="stoolDatePicker">Choose Date</label>
+            <div id="modalStool" class="modal">
+                <div class="modal-content">
+                    <h4>Add Stool</h4>
+                    <form action="/api/stool" method="POST" class="addForm">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <p><label for="stool-slider">Bristol Score(1-7)</label></p>
+                                <p class="range-field">
+                                    <input name="score" id="stool-slider" type="range" min="1" max="7" class="tooltipped" data-position="bottom">
+                                </p>
+                                
+                            </div>
                         </div>
                         <div class="input-field col s4">
                             <select name="hour">
@@ -167,11 +162,8 @@
                             </select>
                             <label>AM</label>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input name="comment" id="stoolComment" type="text">
-                            <label for="stoolComment">Comment</label>
+                        <div class="modal-footer">
+                            <button type="submit" name="submit" class="btn waves-effect">Submit</button>
                         </div>
                     </div>
                     <div class="modal-footer">
