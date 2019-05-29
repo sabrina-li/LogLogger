@@ -42,6 +42,6 @@ main{
   width: 100%;
 }
 
-#error{
+.error{
   color: red;
 }

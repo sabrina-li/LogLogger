@@ -15,6 +15,9 @@ module.exports = function(sequelize, Sequelize) {
         User.hasMany(models.Stool, {
             onDelete: "cascade"
         });
+        User.hasMany(models.Water, {
+            onDelete: "cascade"
+        });
     };
 
     return User;
