@@ -24,9 +24,9 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <form class="col s12" method="POST">
-                <div class="row">
-                    <div class="input-field col s12">
+            <form className="col s12" method="POST">
+                <div className="row">
+                    <div className="input-field col s12">
                         <input
                             name="userName"
                             id="username"
@@ -41,8 +41,8 @@ class LoginForm extends React.Component {
                         </label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
+                <div className="row">
+                    <div className="input-field col s12">
                         <input
                             name="password"
                             id="password"
@@ -59,10 +59,10 @@ class LoginForm extends React.Component {
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <button id="loginBtn" class="waves-effect waves-light btn" type="submit" formaction="/login">
+                        <button id="loginBtn" className="waves-effect waves-light btn" type="submit" formaction="/login">
                             Login
                         </button>
-                        <button id="signupBtn" class="waves-effect waves-light btn" type="submit" formaction="/signup">
+                        <button id="signupBtn" className="waves-effect waves-light btn" type="submit" formaction="/signup">
                             SignUp
                         </button>
                     </div>

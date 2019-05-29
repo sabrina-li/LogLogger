@@ -23,12 +23,12 @@ class LoginForm extends React.Component {
 
   render() {
     return React.createElement("form", {
-      class: "col s12",
+      className: "col s12",
       method: "POST"
     }, React.createElement("div", {
-      class: "row"
+      className: "row"
     }, React.createElement("div", {
-      class: "input-field col s12"
+      className: "input-field col s12"
     }, React.createElement("input", {
       name: "userName",
       id: "username",
@@ -41,9 +41,9 @@ class LoginForm extends React.Component {
     }), React.createElement("label", {
       htmlFor: "username"
     }, "Username"))), React.createElement("div", {
-      class: "row"
+      className: "row"
     }, React.createElement("div", {
-      class: "input-field col s12"
+      className: "input-field col s12"
     }, React.createElement("input", {
       name: "password",
       id: "password",
@@ -61,12 +61,12 @@ class LoginForm extends React.Component {
       class: "input-field col s12"
     }, React.createElement("button", {
       id: "loginBtn",
-      class: "waves-effect waves-light btn",
+      className: "waves-effect waves-light btn",
       type: "submit",
       formaction: "/login"
     }, "Login"), React.createElement("button", {
       id: "signupBtn",
-      class: "waves-effect waves-light btn",
+      className: "waves-effect waves-light btn",
       type: "submit",
       formaction: "/signup"
     }, "SignUp"))));
