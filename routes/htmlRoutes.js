@@ -9,15 +9,8 @@ htmlRouter.get("/", function (req, res) {
     if (req.isAuthenticated()) {
         return res.redirect("/user");
     }
-    //get all flash messages
-    const authFlashArray = req.flash("auth");
-    let flashMessage;
-    for (i=0;i<authFlashArray.length;i++){
-        if (authFlashArray[i].length > 0){
-            flashMessage = authFlashArray[i];
-        }
-    }
-    res.render("index",{errorMessage:flashMessage});
+    //render index, sending failure flash message if there is one
+    res.render("index", { errorMessage: req.flash("auth")[0] });
 });
 
 // Load example page and pass in an example by id

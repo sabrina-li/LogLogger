@@ -56,6 +56,36 @@ class APIController {
         }
     }
 
+    static postFoodDataForUser(req, res, next){
+        const userId = Helper.checkAuth(req.user);
+        if(userId){
+            if (req.body && req.body.name) {
+                const name = req.body.name.trim();
+                db.User.findOne({
+                    where: {
+                        id: userId
+                    }
+                }).then(function (userResult) {
+                    userResult.createFood({
+                        name: name,
+                        time: Helper.convertTime(req.body),
+                        comment: req.body.comment ? req.body.comment : null
+                    }).then(food => {
+                        res.json(food);
+                    }).catch(err=>{
+                        next(err);
+                    });
+                }).catch(err=>{
+                    next(err);
+                });
+            } else {
+                res.status(400).send("invalid input");
+            }
+        }else{
+            next(401);
+        }
+    }
+
     static postWaterDataForUser(req, res, next) {
         const userId = Helper.checkAuth(req.user);
         if(userId){
