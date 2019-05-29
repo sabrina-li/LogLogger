@@ -1,10 +1,20 @@
 const express = require("express");
-const htmlRouter = express.Router();//for api routes
+const htmlRouter = express.Router();//for html routes
+const Helper = require("./utils/helper");
 
 //TODO, read from DB to show the user info
 
 // Load index page
 htmlRouter.get("/", function (req, res) {
+    //Home page for web
+    console.log(Helper.cardsData());
+    res.render("index",{
+        loginout:"Login",
+        cards:Helper.cardsData()
+    });
+});
+
+htmlRouter.get("/login", function (req, res) {
     //if already logged in, redirect to user page instead of login/signup page
     if (req.isAuthenticated()) {
         return res.redirect("/user");
@@ -17,7 +27,10 @@ htmlRouter.get("/", function (req, res) {
             flashMessage = authFlashArray[i];
         }
     }
-    res.render("index",{errorMessage:flashMessage});
+    res.render("login",{
+        loginout:"Login",
+        errorMessage:flashMessage
+    });
 });
 
 // Load example page and pass in an example by id
@@ -29,7 +42,9 @@ htmlRouter.get("/user", function (req, res, next) {
     //redirect to login/signup page if not authenticated
     res.redirect("/");
 }, function (req, res) {
-    res.render("data");
+    res.render("data",{
+        loginout:"Logout"
+    });
 });
 
 module.exports = htmlRouter;
