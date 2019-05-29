@@ -1,5 +1,5 @@
 const API = {
-    login: function(userCreds) {
+    login: (userCreds)=> {
         return $.ajax({
             headers: {
                 "Content-Type": "application/json"
@@ -9,11 +9,17 @@ const API = {
             data: JSON.stringify(userCreds)
         });
     },
-    signup: function(userCreds) {
+    signup: (userCreds)=> {
         return $.ajax({
             url: "api/signup",
             type: "POST",
             data: JSON.stringify(userCreds)
+        });
+    },
+    getAllData: _=>{
+        return $.ajax({
+            url: "/api/alldata",
+            type: "get",
         });
     }
 };

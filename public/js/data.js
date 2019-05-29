@@ -2,6 +2,7 @@ $(document).ready(_ => {
 
     $(document).ready(function () {
         $('.datepicker').datepicker();
+        // $('.tooltipped').tooltip();
     });
     $(document).ready(function () {
         $('select').formSelect();
@@ -12,6 +13,13 @@ $(document).ready(_ => {
         $(this).addClass("modal-trigger");
     });
 
+    $("#stool-slider").on('input',function(event){
+        const val = $(this).val();
+        const html = `<img src="/images/${val}.png" width="400px">`;
+        $('.tooltipped').tooltip({delay: 50, html: html});
+        $('.tooltipped').tooltip('close');
+        $('.tooltipped').tooltip('open');
+    });
 
     const handleSuccess = res=>{
         location.reload();

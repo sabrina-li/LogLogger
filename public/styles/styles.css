@@ -1,36 +1,73 @@
+html,body{
+  height: 100%;
+  width: 100%;
+}
+.container{
+	position: relative;
+}
 #logo{
-  width: 60px;
+  width: 100px;
   height: auto;
-  display: inline-block;
-  transform:  translateY(8px);
+  display: block;
+  margin: auto;
+  margin-right: auto;
+  transform:  translateY(20px);
 }
-#title{
-  display: inline-block;
-}
-
 header{
-  border-bottom: 1px solid #795548;
+	/* background: #795548; */
+	border-bottom: 5px solid #F56F30;
+	margin-bottom: 20px;
+  }
+.headerText{
+  font-size: 1.2rem;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  margin: 1.0933333333rem 0 .656rem 0;
+  font-weight: bold;
+  color: #795548;
+  font-size: 1.2rem;
+}
+.loginoutBtn{
+  left: auto;
+  right: 0;
+}
+.headerText:hover{
+	color: #F56F30;
 }
 
 #signup-header{
   text-align: center;
 }
 
-main{
-  padding-top: 30px;
-  height: 100%;
-}
-
 .login-div{
   padding: 10px;
 }
+.btn{
+  background-color:white;
+  color: #795548;
+  font-weight: bold;
+}
+.btn:hover{
+  color:#F56F30;
+  background-color: white;
+}
+.waves-effect .waves-ripple {
+  /* The alpha value allows the text and background color
+  of the button to still show through. */
+   background-color: #795548 0.5;
+ }
+        
 
+#poopChart{
+    position: relative; 
+}
 #chart-row{
   height: 60vh;
 }
-#chart-col{
+#chart-col{ 
   height: 100%;
-  width: 100%;
+  width: 90%;
 }
 
 #modalWater,#modalStool{
@@ -42,6 +79,45 @@ main{
   width: 100%;
 }
 
-#error{
+.error{
   color: red;
+}
+
+.image-container {
+  width: 100%;
+  height: 60vw;
+  background-image: url("https://images.fineartamerica.com/images-medium-large-5/twelve-colorful-foods-collage-jen-norton.jpg"); /* The image used - important! */
+  background-size: cover; 
+  overflow: hidden;
+  margin-bottom: 40px;
+  position: relative; 
+}
+
+.text {
+	background-color: white;
+	color: black;
+	font-size: 9vw; /* Responsive font size */
+	font-weight: bold;
+	margin: 0 auto; /* Center the text container */
+	padding: 10px;
+	width: 50%;
+	height: fit-content;
+	text-align: center; /* Center text */
+	mix-blend-mode: screen; /* This makes the cutout text possible */
+}
+
+.card .card-image .card-title{
+    background: white;
+    color: black;
+    width: 100%;
+    padding: 0 24px 0 24px; 
+}
+
+.page-footer{
+	background-color: #795548;
+	border-top: 5px solid #F56F30
+}
+
+.footer-copyright{
+  text-align: center;
 }
