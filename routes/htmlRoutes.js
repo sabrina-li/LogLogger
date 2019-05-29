@@ -1,6 +1,7 @@
 const express = require("express");
 const htmlRouter = express.Router();//for html routes
 const Helper = require("./utils/helper");
+const path = require("path");
 
 //TODO, read from DB to show the user info
 
@@ -27,10 +28,11 @@ htmlRouter.get("/login", function (req, res) {
             flashMessage = authFlashArray[i];
         }
     }
-    res.render("login",{
-        loginout:"Login",
-        errorMessage:flashMessage
-    });
+    // res.render("login",{
+    //     loginout:"Login",
+    //     errorMessage:flashMessage
+    // });
+    res.sendFile(path.join(__dirname,"/../views/login.html"));
 });
 
 // Load example page and pass in an example by id
