@@ -9,12 +9,14 @@ module.exports = function (passport, User) {
         usernameField: "username",
         passwordField: "password",
         passReqToCallback: true
-    }, function (req, username, password, done) {
+    }, function (req, usernamePreTrim, passwordPreTrim, done) {
+        var username = usernamePreTrim.trim();
+        var password = passwordPreTrim.trim();
         // if any fields are empty, set flash message
-        if (username.trim().length === 0) {
+        if (username.length === 0) {
             return done(null, false, req.flash("auth", "Username is required."));
         }
-        if (password.trim().length === 0) {
+        if (password.length === 0) {
             return done(null, false, req.flash("auth", "Password is required."));
         }
         var generateHash = function (password) {
