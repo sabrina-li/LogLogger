@@ -4,7 +4,7 @@ class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: "",
+            username: "",
             password: ""
         };
 
@@ -17,9 +17,9 @@ class LoginForm extends React.Component {
         // const target = event.target;
         // const value = target.type === "text";
         // const name = target.value;
-        if (event.target.name==="userName"){
+        if (event.target.name==="username"){
             this.setState({
-                userName: event.target.userName
+                username: event.target.username
             });
         } else if (event.target.name==="password"){
             this.setState({
@@ -30,7 +30,7 @@ class LoginForm extends React.Component {
 
     handleSubmit(event) {
         // alert('A name was submitted: ' + this.state.value);
-        event.preventDefault();
+        // event.preventDefault();
         // const history = createBrowserHistory();
 
         // // Get the current location.
@@ -41,13 +41,13 @@ class LoginForm extends React.Component {
         //     // location is an object like window.location
         //     console.log(action, location.pathname, location.state);
         // });
-        this.props.history.push("/signup");
+        // this.props.history.push("/signup");
     }
 
 
 
     render() {
-        // if (this.state.userName && this.state.password) {
+        // if (this.state.username && this.state.password) {
         //     return <Redirect to='/signup' />;
         // }
         return (
@@ -55,16 +55,16 @@ class LoginForm extends React.Component {
                 <div className="row">
                     <div className="input-field col s12">
                         <input
-                            name="userName"
+                            name="username"
                             id="username"
                             type="text"
                             className="validate"
-                            value={this.state.userName}
+                            value={this.state.username}
                             onChange={this.handleInputChange}
                             required
                             aria-required="true" />
                         <label htmlFor="username">
-                            Username
+                            username
                         </label>
                     </div>
                 </div>
