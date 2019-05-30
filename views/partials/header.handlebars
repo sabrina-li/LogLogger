@@ -4,8 +4,6 @@
 		<a class="headerText" href="/">Welcome</a>
 
 		{{#if loggedIn}}
-		<a class="headerText waves-effect loginoutBtn" href="/login">Login</a>
-		{{else}}
 		<div class="fixed-action-btn">
 			<a class="btn-floating btn-large">
 				<i class="large fas fa-bars"></i>
@@ -33,6 +31,8 @@
 				</li>
 			</ul>
 		</div>
+		{{else}}
+		<a class="headerText waves-effect loginoutBtn" href="/login">Login</a>
 		{{/if}}
 	</div>
 </header>

@@ -22,7 +22,7 @@ htmlRouter.get("/login", function (req, res) {
     //get all flash messages
     const flashMessage = req.flash("auth")[0];
     res.render("login",{
-        loggedIn:true,
+        loggedIn:false,
         errorMessage:flashMessage
     });
 });
@@ -37,7 +37,7 @@ htmlRouter.get("/user", function (req, res, next) {
     res.redirect("/");
 }, function (req, res) {
     res.render("data",{
-        loggedIn:false
+        loggedIn:true
     });
 });
 
