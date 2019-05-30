@@ -3,7 +3,6 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
 	<title>Project No.2</title>
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
@@ -23,17 +22,15 @@
     <script src="/js/API.js"></script>
     <script src="/js/chart.js"></script>
     <script src="/js/data.js"></script>
+    <script src="/js/index.js"></script>
 </head>
 
 <body>
-	<header>
-		<div class="container">
-			<img id="logo" src="/images/logo.jpg">
-			<h3 id="title">Project No.2</h3>
-		</div>
-	</header>
-
+    {{> header}}
+	
 	{{{ body }}}
+
+    {{> footer}}
 </body>
 
 </html>
