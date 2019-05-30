@@ -1,125 +1,180 @@
-    <main>
-        <div class="container">
-            <div id="chart-row" class="z-depth-3 row">
-                <div id="chart-col" class="col s8">
-                    <canvas id="poopChart" width="100" height="100"></canvas>
-                </div>
-            </div>
-            <div class="add-button">
-                <div id="waterAddBtn" class="sub-button tl" data-target="modalWater"><i class="fas fa-tint "
-                        data-target="modalWater"></i></div>
-                <div id="stoolAddBtn" class="sub-button tr" data-target="modalStool"><i class="fas fa-poo "
-                        data-target="modalStool"></i></div>
-                <!-- <div class="sub-button bl">c</div> -->
-                <!-- <div class="sub-button br">d</div> -->
-            </div>
-            <div id="logout"></div>
-
-            <!-- Modal Structure -->
-            <div id="modalWater" class="modal">
-                <div class="modal-content">
-                    <h4>Add Water</h4>
-                    <form action="/api/water" method="POST" class="addForm">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input name="intake" id="waterInput" type="text" class="validate" required="" aria-required="true">
-                                <label for="waterInput">Water Intake(ml)</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s5">
-                                <input name="date" id="waterDatePicker" type="text" class="datepicker">
-                                <label for="waterDatePicker">Choose Date</label>
-                            </div>
-                            <div class="input-field col s4">
-                                <select name="hour" >
-                                    <option value="" disabled selected>Choose Hour</option>
-                                    <option value="1">01</option>
-                                    <option value="2">02</option>
-                                    <option value="3">03</option>
-                                    <option value="4">04</option>
-                                    <option value="5">05</option>
-                                    <option value="6">06</option>
-                                    <option value="7">07</option>
-                                    <option value="8">08</option>
-                                    <option value="9">09</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
-                                <label>Time</label>
-                            </div>
-                            <div class="input-field col s3">
-                                <select name="ampm" >
-                                    <option value="AM">AM</option>
-                                    <option value="PM">PM</option>
-                                </select>
-                                <label>AM</label>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" name="submit" class="btn waves-effect waves-green">Submit</button>
-                        </div>
-                        <div id="error"></div>
-                    </form>
-                </div>
-
-            </div>
-
-            <div id="modalStool" class="modal">
-                <div class="modal-content">
-                    <h4>Add Stool</h4>
-                    <form action="/api/stool" method="POST" class="addForm">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input name="score" id="stoolInput" type="text" class="validate" required="" aria-required="true">
-                                <label for="stoolInput">Bristol Score(1-7)</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s5">
-                                <input name="date" id="stoolDatePicker" type="text" class="datepicker">
-                                <label for="stoolDatePicker">Choose Date</label>
-                            </div>
-                            <div class="input-field col s4">
-                                <select name="hour">
-                                    <option value="" disabled selected>Choose Hour</option>
-                                    <option value="1">01</option>
-                                    <option value="2">02</option>
-                                    <option value="3">03</option>
-                                    <option value="4">04</option>
-                                    <option value="5">05</option>
-                                    <option value="6">06</option>
-                                    <option value="7">07</option>
-                                    <option value="8">08</option>
-                                    <option value="9">09</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
-                                <label>Time</label>
-                            </div>
-                            <div class="input-field col s3">
-                                <select name="ampm">
-                                    <option value="AM">AM</option>
-                                    <option value="PM">PM</option>
-                                </select>
-                                <label>AM</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input name="comment" id="stoolComment" type="text">
-                                <label for="stoolComment">Comment</label>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" name="submit" class="btn waves-effect waves-green">Submit</button>
-                        </div>
-                        <div id="error"></div>
-                    </form>
-                </div>
+<main>
+    <div class="container">
+        <div id="chart-row" class="z-depth-3 row">
+            <div id="chart-col" class="col s8">
+                <canvas id="poopChart" width="100" height="100"></canvas>
             </div>
         </div>
 
-    </main>
+        <!-- Modal Structure -->
+        <div id="modalWater" class="modal">
+            <div class="modal-content">
+                <h4>Add Water</h4>
+                <form action="/api/water" method="POST" class="addForm">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input name="intake" id="waterInput" type="text" class="validate" required=""
+                                aria-required="true">
+                            <label for="waterInput">Water Intake(ml)</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s5">
+                            <input name="date" id="waterDatePicker" type="text" class="datepicker">
+                            <label for="waterDatePicker">Choose Date</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <select name="hour">
+                                <option value="" disabled selected>Choose Hour</option>
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <label>Time</label>
+                        </div>
+                        <div class="input-field col s3">
+                            <select name="ampm">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                            <label>AM</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" name="submit" class="btn waves-effect waves-green">Submit</button>
+                    </div>
+                    <div class="error"></div>
+                </form>
+            </div>
+
+        </div>
+
+        <div id="modalFood" class="modal">
+            <div class="modal-content">
+                <h4>Add Food Eaten</h4>
+                <form action="/api/food" method="POST" class="addForm">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input name="name" id="foodName" type="text" class="validate" required=""
+                                aria-required="true">
+                            <label for="foodName">Food Eaten</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s5">
+                            <input name="date" id="foodDatePicker" type="text" class="datepicker">
+                            <label for="foodDatePicker">Choose Date</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <select name="hour">
+                                <option value="" disabled selected>Choose Hour</option>
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <label>Time</label>
+                        </div>
+                        <div class="input-field col s3">
+                            <select name="ampm">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                            <label>AM</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input name="comment" id="foodComment" type="text">
+                            <label for="foodComment">Comment (Optional)</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" name="submit" class="btn waves-effect waves-green">Submit</button>
+                    </div>
+                    <div class="error"></div>
+                </form>
+            </div>
+        </div>
+
+        <div id="modalStool" class="modal">
+            <div class="modal-content">
+                <h4>Add Stool</h4>
+                <form action="/api/stool" method="POST" class="addForm">
+                    {{!-- Slider for Bristol scores --}}
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <p><label for="stool-slider">Bristol Score(1-7)</label></p>
+                            <p class="range-field">
+                                <input name="score" id="stool-slider" type="range" min="1" max="7" class="tooltipped"
+                                    data-position="bottom">
+                            </p>
+                        </div>
+                    </div>
+                    {{!-- Dropdowns for datetime --}}
+                    <div class="row">
+                        <div class="input-field col s5">
+                            <input name="date" id="stoolDatePicker" type="text" class="datepicker">
+                            <label for="stoolDatePicker">Choose Date</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <select name="hour">
+                                <option value="" disabled selected>Choose Hour</option>
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <label>Time</label>
+                        </div>
+                        <div class="input-field col s3">
+                            <select name="ampm">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                            <label>AM</label>
+                        </div>
+                    </div>
+                    {{!-- Input for comment --}}
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input name="comment" id="stoolComment" type="text">
+                            <label for="stoolComment">Comment (Optional)</label>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" name="submit" class="btn waves-effect waves-green">Submit</button>
+                    </div>
+                    <div id="error"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</main>
