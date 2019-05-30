@@ -25,5 +25,16 @@ const dummyData = {
             intake:160,
             time:"05/17/2019 12:00",
         }
+    ],
+    food:[
+        {
+            name:"Taco Bell",
+            time:"05/14/2019 18:00",
+            comment:"extra hot sauce"
+        },{
+            name:"Asparagus in garlic sauce",
+            time:"05/15/2019 18:00",
+            comment:"extra stinky"
+        }
     ]
 };

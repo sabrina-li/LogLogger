@@ -18,7 +18,7 @@ header{
 	border-bottom: 5px solid #F56F30;
 	margin-bottom: 20px;
   }
-.headerText{
+.headerText, .fixed-action-btn{
   font-size: 1.2rem;
   position: absolute;
   top: 10px;
@@ -28,7 +28,7 @@ header{
   color: #795548;
   font-size: 1.2rem;
 }
-.loginoutBtn{
+.loginoutBtn, .fixed-action-btn{
   left: auto;
   right: 0;
 }
@@ -70,7 +70,7 @@ header{
   width: 90%;
 }
 
-#modalWater,#modalStool{
+#modalWater,#modalStool,#modalFood{
   height: 120%;
   /* overflow: scroll; */
 }
