@@ -1,0 +1,129 @@
+$primary-orange: #F56F30;
+$primary-brown: #795548;
+@mixin borderbottom() {
+    border-bottom: 5px solid $primary-orange;
+}
+@mixin bordertop() {
+    border-top: 5px solid $primary-orange;
+}
+header{
+    @include borderbottom();
+    margin-bottom: 20px;
+  }
+html {
+    body{
+        height: 100%;
+        width: 100%;
+    }
+}
+.btn{
+    background-color:white;
+    color: $primary-brown;
+    font-weight: bold;
+    :hover{
+        color: $primary-orange;
+        background-color: white;
+    }
+}
+.card {
+    .card-image {
+        .card-title{
+            background: white;
+            color: black;
+            width: 100%;
+            padding: 0 24px 0 24px; 
+        }
+    }
+}
+.container{
+      position: relative;
+}
+.datepicker-modal {
+    width: 100%;
+}
+.error{
+    color: red;
+}
+.footer-copyright{
+    text-align: center;
+}
+.headerText{
+    font-size: 1.2rem;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    margin: 1.0933333333rem 0 .656rem 0;
+    font-weight: bold;
+    color: $primary-brown;
+    font-size: 1.2rem;
+    :hover{
+        color: $primary-orange;
+    }
+}
+.image-container {
+    width: 100%;
+    height: 60vw;
+    background-image: url("https://images.fineartamerica.com/images-medium-large-5/twelve-colorful-foods-collage-jen-norton.jpg"); /* The image used - important! */
+    background-size: cover; 
+    overflow: hidden;
+    margin-bottom: 40px;
+    position: relative; 
+}
+.loginoutBtn{
+    left: auto;
+    right: 0;
+}
+.login-div{
+    padding: 10px;
+}
+.page-footer{
+    background-color: $primary-brown;
+    @include bordertop();
+}
+.text {
+    background-color: white;
+    color: black;
+    font-size: 9vw; /* Responsive font size */
+    font-weight: bold;
+    margin: 0 auto; /* Center the text container */
+    padding: 10px;
+    width: 50%;
+    height: fit-content;
+    text-align: center; /* Center text */
+    mix-blend-mode: screen; /* This makes the cutout text possible */
+}
+.waves-effect {
+    .waves-ripple {
+        /* The alpha value allows the text and background color
+        of the button to still show through. */
+         background-color: $primary-brown 0.5;
+    }
+}
+#chart-col{ 
+    height: 100%;
+    width: 90%;
+}
+#chart-row{
+    height: 60vh;
+}
+#logo{
+    width: 100px;
+    height: auto;
+    display: block;
+    margin: auto;
+    margin-right: auto;
+    transform:  translateY(20px);
+}
+#modalWater {
+    #modalStool{
+        height: 120%;
+        /* overflow: scroll; */
+    }
+} 
+#poopChart{
+    position: relative; 
+}
+#signup-header{
+    text-align: center;
+}
+  
