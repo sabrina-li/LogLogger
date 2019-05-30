@@ -9,24 +9,41 @@ class LoginForm extends React.Component {
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleInputChange(event) {
-        const target = event.target;
-        const value = target.type === "text";
-        const name = target.value;
-        this.setState({
-            [name]: value
-            // userName: event.target.userName,
-            // password: event.target.password
-        });
+        // console.log(event);
+        // const target = event.target;
+        // const value = target.type === "text";
+        // const name = target.value;
+        if (event.target.name==="userName"){
+            this.setState({
+                userName: event.target.userName
+            });
+        } else if (event.target.name==="password"){
+            this.setState({
+                password: event.target.password
+            });
+        }
     }
 
+    handleSubmit(event) {
+        // alert('A name was submitted: ' + this.state.value);
+        event.preventDefault();
+        this.props.history.push("/signup");
+    }
+
+
+
     render() {
+        // if (this.state.userName && this.state.password) {
+        //     return <Redirect to='/signup' />;
+        // }
         return (
-            <form class="col s12" method="POST">
-                <div class="row">
-                    <div class="input-field col s12">
+            <form className="col s12" method="POST" onSubmit={this.handleSubmit}>
+                <div className="row">
+                    <div className="input-field col s12">
                         <input
                             name="userName"
                             id="username"
@@ -41,8 +58,8 @@ class LoginForm extends React.Component {
                         </label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
+                <div className="row">
+                    <div className="input-field col s12">
                         <input
                             name="password"
                             id="password"
@@ -57,12 +74,12 @@ class LoginForm extends React.Component {
                         </label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <button id="loginBtn" class="waves-effect waves-light btn" type="submit" formaction="/login">
+                <div className="row">
+                    <div className="input-field col s12">
+                        <button id="loginBtn" className="waves-effect waves-light btn" type="submit" formAction="/login">
                             Login
                         </button>
-                        <button id="signupBtn" class="waves-effect waves-light btn" type="submit" formaction="/signup">
+                        <button id="signupBtn" className="waves-effect waves-light btn" type="submit" formAction="/signup">
                             SignUp
                         </button>
                     </div>

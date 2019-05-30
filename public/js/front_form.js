@@ -8,27 +8,43 @@ class LoginForm extends React.Component {
       password: ""
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === "text";
-    const name = target.value;
-    this.setState({
-      [name]: value // userName: event.target.userName,
-      // password: event.target.password
+    // console.log(event);
+    // const target = event.target;
+    // const value = target.type === "text";
+    // const name = target.value;
+    if (event.target.name === "userName") {
+      this.setState({
+        userName: event.target.userName
+      });
+    } else if (event.target.name === "password") {
+      this.setState({
+        password: event.target.password
+      });
+    }
+  }
 
-    });
+  handleSubmit(event) {
+    // alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
+    this.props.history.push("/signup");
   }
 
   render() {
+    // if (this.state.userName && this.state.password) {
+    //     return <Redirect to='/signup' />;
+    // }
     return React.createElement("form", {
-      class: "col s12",
-      method: "POST"
+      className: "col s12",
+      method: "POST",
+      onSubmit: this.handleSubmit
     }, React.createElement("div", {
-      class: "row"
+      className: "row"
     }, React.createElement("div", {
-      class: "input-field col s12"
+      className: "input-field col s12"
     }, React.createElement("input", {
       name: "userName",
       id: "username",
@@ -41,9 +57,9 @@ class LoginForm extends React.Component {
     }), React.createElement("label", {
       htmlFor: "username"
     }, "Username"))), React.createElement("div", {
-      class: "row"
+      className: "row"
     }, React.createElement("div", {
-      class: "input-field col s12"
+      className: "input-field col s12"
     }, React.createElement("input", {
       name: "password",
       id: "password",
@@ -56,19 +72,19 @@ class LoginForm extends React.Component {
     }), React.createElement("label", {
       htmlFor: "password"
     }, "Password"))), React.createElement("div", {
-      class: "row"
+      className: "row"
     }, React.createElement("div", {
-      class: "input-field col s12"
+      className: "input-field col s12"
     }, React.createElement("button", {
       id: "loginBtn",
-      class: "waves-effect waves-light btn",
+      className: "waves-effect waves-light btn",
       type: "submit",
-      formaction: "/login"
+      formAction: "/login"
     }, "Login"), React.createElement("button", {
       id: "signupBtn",
-      class: "waves-effect waves-light btn",
+      className: "waves-effect waves-light btn",
       type: "submit",
-      formaction: "/signup"
+      formAction: "/signup"
     }, "SignUp"))));
   }
 
