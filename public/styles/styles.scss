@@ -20,7 +20,7 @@ html {
     background-color:white;
     color: $primary-brown;
     font-weight: bold;
-    :hover{
+    &:hover{
         color: $primary-orange;
         background-color: white;
     }
@@ -56,7 +56,7 @@ html {
     font-weight: bold;
     color: $primary-brown;
     font-size: 1.2rem;
-    :hover{
+    &:hover{
         color: $primary-orange;
     }
 }
@@ -114,12 +114,30 @@ html {
     margin-right: auto;
     transform:  translateY(20px);
 }
-#modalWater {
-    #modalStool{
-        height: 120%;
-        /* overflow: scroll; */
-    }
-} 
+
+#modalWater,#modalStool,#modalFood{
+    height: 120%;
+}
+  
+.datepicker-modal {
+width: 100%;
+}
+  
+.error{
+color: red;
+}
+  
+.image-container {
+width: 100%;
+height: 60vw;
+background-image: url("https://images.fineartamerica.com/images-medium-large-5/twelve-colorful-foods-collage-jen-norton.jpg"); /* The image used - important! */
+background-size: cover; 
+overflow: hidden;
+margin-bottom: 40px;
+position: relative; 
+}
+
+
 #poopChart{
     position: relative; 
 }

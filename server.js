@@ -19,7 +19,7 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 //passport, session, and flash middleware for authentication, persistent login, and error-handling
-app.use(session({ secret: "temporary secret" }));
+app.use(session({ secret: process.env.secret || "temporary secret" }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -43,6 +43,7 @@ if (process.env.NODE_ENV === "test") {
     syncOptions.match = /_development$/;
 }
 
+console.log(syncOptions);
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function () {
     app.listen(PORT, function () {

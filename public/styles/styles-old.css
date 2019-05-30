@@ -13,6 +13,7 @@ html body {
   color: #795548;
   font-weight: bold;
 }
+
 .btn:hover {
   color: #F56F30;
   background-color: white;
@@ -41,18 +42,37 @@ html body {
   text-align: center;
 }
 
-.headerText {
+.headerText,
+#logo{
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: auto;
+  margin-right: auto;
+  transform:  translateY(20px);
+}
+header{
+	/* background: #795548; */
+	border-bottom: 5px solid #F56F30;
+	margin-bottom: 20px;
+  }
+.headerText, .fixed-action-btn{
   font-size: 1.2rem;
   position: absolute;
   top: 10px;
   left: 0;
-  margin: 1.0933333333rem 0 0.656rem 0;
+  margin: 1.0933333333rem 0 .656rem 0;
   font-weight: bold;
   color: #795548;
   font-size: 1.2rem;
 }
-.headerText:hover {
-  color: #F56F30;
+
+.headerText:hover{
+  color:#F56F30;
+}
+.loginoutBtn, .fixed-action-btn{
+  left: auto;
+  right: 0;
 }
 
 .image-container {
@@ -90,6 +110,8 @@ html body {
   /* Center the text container */
   padding: 10px;
   width: 50%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   text-align: center;
   /* Center text */
@@ -99,7 +121,7 @@ html body {
 
 .waves-effect .waves-ripple {
   /* The alpha value allows the text and background color
-  of the button to still show through. */
+        of the button to still show through. */
   background-color: #795548 0.5;
 }
 
@@ -112,36 +134,37 @@ html body {
   height: 60vh;
 }
 
-#logo {
-  width: 100px;
-  height: auto;
-  display: block;
-  margin: auto;
-  margin-right: auto;
-  transform: translateY(20px);
-}
-
-#modalWater, #modalStool, #modalFood {
+#modalWater,#modalStool,#modalFood{
   height: 120%;
+  /* overflow: scroll; */
 }
 
 .datepicker-modal {
   width: 100%;
 }
 
-.error {
+.error{
   color: red;
 }
 
 .image-container {
   width: 100%;
   height: 60vw;
-  background-image: url("https://images.fineartamerica.com/images-medium-large-5/twelve-colorful-foods-collage-jen-norton.jpg");
-  /* The image used - important! */
-  background-size: cover;
+  background-image: url("https://images.fineartamerica.com/images-medium-large-5/twelve-colorful-foods-collage-jen-norton.jpg"); /* The image used - important! */
+  background-size: cover; 
   overflow: hidden;
   margin-bottom: 40px;
-  position: relative;
+  position: relative; 
+}
+
+#logo {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: auto;
+  margin-right: auto;
+  -webkit-transform: translateY(20px);
+          transform: translateY(20px);
 }
 
 #poopChart {
@@ -151,5 +174,4 @@ html body {
 #signup-header {
   text-align: center;
 }
-
 /*# sourceMappingURL=styles.css.map */
