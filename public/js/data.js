@@ -8,10 +8,7 @@ $(document).ready(_ => {
         $('select').formSelect();
     });
 
-    $(".sub-button").on("mouseover", function (event) {
-        $('.modal').modal();
-        $(this).addClass("modal-trigger");
-    });
+    $('.modal').modal();
 
     $("#stool-slider").on('input',function(event){
         const val = $(this).val();
@@ -35,6 +32,14 @@ $(document).ready(_ => {
         error: HandleError
     }; 
     $('.addForm').ajaxForm(options);
-    
+
 });
 
+//Materialize with vanilla js
+document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    var instances = M.FloatingActionButton.init(elems, {
+        direction: 'left',
+        hoverEnabled: false
+    });
+});

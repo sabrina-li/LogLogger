@@ -44,7 +44,6 @@ if (process.env.NODE_ENV === "test") {
     syncOptions.match = /_development$/;
 }
 
-
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function () {
     app.listen(PORT, function () {
