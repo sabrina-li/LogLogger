@@ -7,9 +7,9 @@ const Helper = require("./utils/helper");
 // Load index page
 htmlRouter.get("/", function (req, res) {
     //Home page for web
-    console.log(Helper.cardsData());
+    // console.log(Helper.cardsData());
     res.render("index",{
-        loginout:"Login",
+        loggedIn:false,
         cards:Helper.cardsData()
     });
 });
@@ -20,15 +20,9 @@ htmlRouter.get("/login", function (req, res) {
         return res.redirect("/user");
     }
     //get all flash messages
-    const authFlashArray = req.flash("auth");
-    let flashMessage;
-    for (i=0;i<authFlashArray.length;i++){
-        if (authFlashArray[i].length > 0){
-            flashMessage = authFlashArray[i];
-        }
-    }
+    const flashMessage = req.flash("auth")[0];
     res.render("login",{
-        loginout:"Login",
+        loggedIn:true,
         errorMessage:flashMessage
     });
 });
@@ -43,7 +37,7 @@ htmlRouter.get("/user", function (req, res, next) {
     res.redirect("/");
 }, function (req, res) {
     res.render("data",{
-        loginout:"Logout"
+        loggedIn:false
     });
 });
 
