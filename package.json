@@ -4,6 +4,7 @@
   "description": "Project 2 Starter",
   "main": "server.js",
   "scripts": {
+    "build": "npx babel --watch public/jsx --out-dir public/js --presets @babel/preset-react",
     "start": "node server.js",
     "lint": "eslint --quiet .",
     "fix": "eslint --fix .",
