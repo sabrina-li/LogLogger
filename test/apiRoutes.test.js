@@ -95,7 +95,7 @@ describe("API Controller", (done) => {
         return db.sequelize.sync({ force: true, match: /_test$/ });
     });
 
-    it("should get all data from user, only stool in DB", (done) => {
+    it("should get all data from user", (done) => {
         const req = {
             user: {
                 id: 1
@@ -109,10 +109,10 @@ describe("API Controller", (done) => {
         const time = new Date("2019-05-16T05:00:00.000Z");
 
         let next, res = {
-            send: function(arg) { 
-                expect(this.sendCalledWith.water[0].dataValues).to.include(water);
-                expect(this.sendCalledWith.water[0].time).to.equalDate(time);
-                expect(this.sendCalledWith.stool).to.have.lengthOf(0);
+            send: function(arg) {
+                expect(arg.water[0].dataValues).to.include(water);
+                expect(arg.water[0].time).to.equalDate(time);
+                expect(arg.stool).to.have.lengthOf(0);
                 done();
             }
         };
@@ -128,32 +128,35 @@ describe("API Controller", (done) => {
         });
     });
 
-    it("should POST water data to DB", (done) => {
+    it("should POST stool data to DB", (done) => {
         const req = {
             user: {
                 id: 1
             },
             body:{
                 score:6,
-                time:"05/17/2019 14:00",
+                date:"May 01, 2019",
+                hour:4,
+                ampm:"AM",
                 comment:"???"
             }
         };
         // const time = Date("2019-05-16T05:00:00.000Z");
-        const time = new Date("2019-05-16T05:00:00.000Z");
+        const time = new Date("2019-05-01T08:00:00.000Z");
 
         let next, res = {
-            json: function(arg) { 
-                console.log(arg);
-
-                // expect(this.sendCalledWith.water[0].dataValues).to.include(water);
-                // expect(this.sendCalledWith.water[0].time).to.equalDate(time);
-                // expect(this.sendCalledWith.stool).to.have.lengthOf(0);
+            json: function(arg) {
+                // console.log(arg.time);
+                expect(arg.score).to.equal(6);
+                expect(arg.comment).to.equal("???");
+                expect(arg.time).to.equalDate(time);
                 done();
             }
         };
 
-       APIController.postStoolDataForUser(req,res,next);
+        db.User.create({ username: "test1", password: "test1" }).then(newUser => {
+            APIController.postStoolDataForUser(req,res,next);
+        });
     });
 
 });

@@ -47,6 +47,7 @@ class APIController {
                         next(err);
                     });
                 }).catch(err=>{
+                    console.log(err);
                     next(err);
                 });
             } else {
