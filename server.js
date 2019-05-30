@@ -19,7 +19,7 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 //passport, session, and flash middleware for authentication, persistent login, and error-handling
-app.use(session({ secret: "temporary secret" }));
+app.use(session({ secret: process.env.secret || "temporary secret" }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
