@@ -5,7 +5,7 @@ const expect = chai.expect;
 
 // const server = require("../server");
 const db = require("../models");
-const Helper = require("../routes/utils/Helper");
+const Helper = require("../routes/utils/helper.js");
 const APIController = require("../routes/controller/apiController");
 
 const req1 = {
