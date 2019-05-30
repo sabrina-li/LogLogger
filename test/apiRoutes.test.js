@@ -159,6 +159,35 @@ describe("API Controller", (done) => {
         });
     });
 
+    it("should POST water data to DB", (done) => {
+        const req = {
+            user: {
+                id: 1
+            },
+            body:{
+                intake:400,
+                date:"May 02, 2019",
+                hour:4,
+                ampm:"AM"
+            }
+        };
+        // const time = Date("2019-05-16T05:00:00.000Z");
+        const time = new Date("2019-05-02T08:00:00.000Z");
+
+        let next, res = {
+            json: function(arg) {
+                // console.log(arg);
+                expect(arg.intake).to.equal(400);
+                expect(arg.time).to.equalDate(time);
+                done();
+            }
+        };
+
+        db.User.create({ username: "test1", password: "test1" }).then(newUser => {
+            APIController.postWaterDataForUser(req,res,next);
+        });
+    });
+
 });
 
 
