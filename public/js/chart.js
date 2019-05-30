@@ -169,13 +169,14 @@ const displayChart = (data) => {
             tooltips: {
                 callbacks: {
                     label: function(tooltipItem, data) {
+                        console.log(tooltipItem);
                         console.log(data.datasets[tooltipItem.datasetIndex]);
-                        var label = data.datasets[tooltipItem.datasetIndex].data[0].y || '';
-                        if (data.datasets[tooltipItem.datasetIndex].data[0].name) {
-                            label = "\nFood: "+ data.datasets[tooltipItem.datasetIndex].data[0].name;
+                        var label = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].y || '';
+                        if (data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].name) {
+                            label = "\nFood: "+ data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].name;
                         }
-                        if(data.datasets[tooltipItem.datasetIndex].data[0].comment){
-                            label = "\nComment: "+ data.datasets[tooltipItem.datasetIndex].data[0].comment;
+                        if(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].comment){
+                            label += "\nComment: "+ data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].comment;
                         }else{
                             // label += 
                         }
