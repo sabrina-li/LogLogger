@@ -42,9 +42,11 @@ const displayChart = (data) => {
             result.y = 0;
             result.x = moment(food.time);
             result.comment = food.comment;
+            result.name = food.name;
             return result;
         });
     }
+
     const stoolData = data.stool;//from dummy_Data
     if (stoolData) {
         timelineX = timelineX.concat(stoolData.map(x => x.time));
@@ -59,15 +61,13 @@ const displayChart = (data) => {
             return result;
         });
     }
-
-    console.log(timelineX);
     var chartData = {
         // labels: timelineX,
         datasets: [{
             type: "line",
             label: "Bristol Score",
-            backgroundColor: lightOrange,
-            borderColor: orange,
+            backgroundColor: "rgb(139,69,19, 0.5)",
+            borderColor: "rgba(139,69,19, 1)",
             fill: false,
             data: stoolChartData,
             yAxisID: "y-bristol"
@@ -77,6 +77,15 @@ const displayChart = (data) => {
             backgroundColor: lightBlue,
             borderColor: blue,
             data: waterChartData,
+            borderWidth: 2,
+            yAxisID: "y-water",
+        },
+        {
+            type: "scatter",
+            label: "Food Intake",
+            backgroundColor: lightOrange,
+            borderColor: orange,
+            data: foodChartData,
             borderWidth: 2,
             yAxisID: "y-water",
         }]
@@ -156,8 +165,25 @@ const displayChart = (data) => {
                             max: 7
                         }
                     }],
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        console.log(data.datasets[tooltipItem.datasetIndex]);
+                        var label = data.datasets[tooltipItem.datasetIndex].data[0].y || '';
+                        if (data.datasets[tooltipItem.datasetIndex].data[0].name) {
+                            label = "\nFood: "+ data.datasets[tooltipItem.datasetIndex].data[0].name;
+                        }
+                        if(data.datasets[tooltipItem.datasetIndex].data[0].comment){
+                            label = "\nComment: "+ data.datasets[tooltipItem.datasetIndex].data[0].comment;
+                        }else{
+                            // label += 
+                        }
+                            
+                        return label;
+                    }
+                }
             }
-
         }
     });
 
@@ -168,6 +194,4 @@ API.getAllData().then((res) => {
     console.log(res);
     displayChart(res);
 });
-
-
 

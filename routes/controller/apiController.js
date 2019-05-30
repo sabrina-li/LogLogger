@@ -12,11 +12,13 @@ class APIController {
             }).then(function(userResult) {
                 let stoolPromise = userResult.getStools();
                 let waterPromise = userResult.getWaters();
+                let foodPromise = userResult.getFood();
 
-                Promise.all([stoolPromise,waterPromise]).then(results=>{
+                Promise.all([stoolPromise,waterPromise,foodPromise]).then(results=>{
                     let result={};
                     result.stool = results[0];
                     result.water = results[1];
+                    result.food = results[2];
                     res.send(result);
                 });
             }).catch(err=>{
