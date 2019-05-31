@@ -16,6 +16,7 @@ htmlRouter.get("/", function (req, res) {
     });
 });
 
+
 htmlRouter.get("/login", function (req, res) {
     //if already logged in, redirect to user page instead of login/signup page
     if (req.isAuthenticated()) {
@@ -33,6 +34,18 @@ htmlRouter.get("/login", function (req, res) {
     //     loginout:"Login",
     //     errorMessage:flashMessage
     // });
+    var writeToFrontFromJStoModifyErrorMessageOnLoginPage = (data,originaltext,endUpWithThisText)=>{
+        var result = data.toString().replace(originaltext,endUpWithThisText);
+        fs.writeFile(path.join(__dirname,"/../public/js/front_form.js"), result, "utf8", function(err) {
+            if (err) {
+                return console.log(err);
+            }
+            res.sendFile(path.join(__dirname,"/../views/login.html"));
+            console.log("it finished writing the file in the else");
+            // console.log(result);
+        });
+    };
+    // things to replace
     const divInitial = ` React.createElement("div", {
       className: "error"
     })`;
@@ -46,20 +59,12 @@ htmlRouter.get("/login", function (req, res) {
         className: "error"
       },"Incorrect password.")`;
 
-    if (flashMessage){
+    if (flashMessage){        
         fs.readFile(path.join(__dirname,"/../public/js/front_form.js"), "utf8", function(err, data) {
             if (err) {
                 return console.log(err);
             }
-            var result = data.toString().replace(divInitial,divError);
-            fs.writeFile(path.join(__dirname,"/../public/js/front_form.js"), result, "utf8", function(err) {
-                if (err) {
-                    return console.log(err);
-                }
-                res.sendFile(path.join(__dirname,"/../views/login.html"));
-                console.log("it finished writing the file");
-                console.log(result);
-            });
+            writeToFrontFromJStoModifyErrorMessageOnLoginPage(data,divInitial,divError);
         });
     } else {
         fs.readFile(path.join(__dirname,"/../public/js/front_form.js"), "utf8", function(err, data) {
@@ -68,29 +73,12 @@ htmlRouter.get("/login", function (req, res) {
             }
 
             if(data.includes(divUserExistError)){
-                var result = data.toString().replace(divUserExistError,divInitial);
-                fs.writeFile(path.join(__dirname,"/../public/js/front_form.js"), result, "utf8", function(err) {
-                    if (err) {
-                        return console.log(err);
-                    }
-                    res.sendFile(path.join(__dirname,"/../views/login.html"));
-                    console.log("it finished writing the file in the else");
-                    console.log(result);
-                });
+                writeToFrontFromJStoModifyErrorMessageOnLoginPage(data,divUserExistError,divInitial);
             } else if (data.includes(divIncorrectPassError)){
-                var result1 = data.toString().replace(divIncorrectPassError,divInitial);
-                fs.writeFile(path.join(__dirname,"/../public/js/front_form.js"), result1, "utf8", function(err) {
-                    if (err) {
-                        return console.log(err);
-                    }
-                    res.sendFile(path.join(__dirname,"/../views/login.html"));
-                    console.log("it finished writing the file in the else");
-                    console.log(result);
-                });
+                writeToFrontFromJStoModifyErrorMessageOnLoginPage(data,divIncorrectPassError,divInitial);
             } else {
                 res.sendFile(path.join(__dirname,"/../views/login.html"));
             }
-            
         });
         // res.sendFile(path.join(__dirname,"/../views/login.html"));
         // console.log("its in the else of html routes when sending file");
