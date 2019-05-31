@@ -93,6 +93,7 @@ class LoginForm extends React.Component {
                             SignUp
                         </button>
                     </div>
+                    <div className="error"></div>
                 </div>
             </form>
         );

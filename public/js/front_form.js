@@ -92,7 +92,9 @@ class LoginForm extends React.Component {
       className: "waves-effect waves-light btn",
       type: "submit",
       formAction: "/signup"
-    }, "SignUp"))));
+    }, "SignUp")), React.createElement("div", {
+      className: "error"
+    })));
   }
 
 } //Promise.resolve().finally();
