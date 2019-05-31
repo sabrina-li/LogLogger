@@ -89,7 +89,7 @@ describe("helper class for checking if userid is corrent", (done) => {
     });
 });
 
-describe("API Controller", (done) => {
+describe.skip("API Controller", (done) => {
     beforeEach(() => {
         // request = chai.request(server);
         return db.sequelize.sync({ force: true, match: /_test$/ });
