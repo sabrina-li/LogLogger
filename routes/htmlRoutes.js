@@ -16,7 +16,6 @@ htmlRouter.get("/", function (req, res) {
     });
 });
 
-
 htmlRouter.get("/login", function (req, res) {
     //if already logged in, redirect to user page instead of login/signup page
     if (req.isAuthenticated()) {
@@ -34,6 +33,7 @@ htmlRouter.get("/login", function (req, res) {
     //     loginout:"Login",
     //     errorMessage:flashMessage
     // });
+    // TODO: not use read file and write file to dynamically change errors on front_form.js
     var writeToFrontFromJStoModifyErrorMessageOnLoginPage = (data,originaltext,endUpWithThisText)=>{
         var result = data.toString().replace(originaltext,endUpWithThisText);
         fs.writeFile(path.join(__dirname,"/../public/js/front_form.js"), result, "utf8", function(err) {
@@ -45,7 +45,7 @@ htmlRouter.get("/login", function (req, res) {
             // console.log(result);
         });
     };
-    // things to replace
+    // TODO: things to replace later on as we learn more about React.js
     const divInitial = ` React.createElement("div", {
       className: "error"
     })`;
@@ -66,23 +66,22 @@ htmlRouter.get("/login", function (req, res) {
             }
             writeToFrontFromJStoModifyErrorMessageOnLoginPage(data,divInitial,divError);
         });
-    } else {
-        fs.readFile(path.join(__dirname,"/../public/js/front_form.js"), "utf8", function(err, data) {
-            if (err) {
-                return console.log(err);
-            }
-
-            if(data.includes(divUserExistError)){
-                writeToFrontFromJStoModifyErrorMessageOnLoginPage(data,divUserExistError,divInitial);
-            } else if (data.includes(divIncorrectPassError)){
-                writeToFrontFromJStoModifyErrorMessageOnLoginPage(data,divIncorrectPassError,divInitial);
-            } else {
-                res.sendFile(path.join(__dirname,"/../views/login.html"));
-            }
-        });
-        // res.sendFile(path.join(__dirname,"/../views/login.html"));
-        // console.log("its in the else of html routes when sending file");
     }
+    fs.readFile(path.join(__dirname,"/../public/js/front_form.js"), "utf8", function(err, data) {
+        if (err) {
+            return console.log(err);
+        }
+
+        if(data.includes(divUserExistError)){
+            writeToFrontFromJStoModifyErrorMessageOnLoginPage(data,divUserExistError,divInitial);
+        } else if (data.includes(divIncorrectPassError)){
+            writeToFrontFromJStoModifyErrorMessageOnLoginPage(data,divIncorrectPassError,divInitial);
+        } else {
+            res.sendFile(path.join(__dirname,"/../views/login.html"));
+        }
+    });
+    // res.sendFile(path.join(__dirname,"/../views/login.html"));
+    // console.log("its in the else of html routes when sending file"); 
 
     // res.sendFile(path.join(__dirname,"/../views/login.html"));
 });
