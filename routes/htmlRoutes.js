@@ -9,9 +9,9 @@ const fs = require("fs");
 // Load index page
 htmlRouter.get("/", function (req, res) {
     //Home page for web
-    console.log(Helper.cardsData());
+    // console.log(Helper.cardsData());
     res.render("index",{
-        loginout:"Login",
+        loggedIn:false,
         cards:Helper.cardsData()
     });
 });
@@ -101,7 +101,7 @@ htmlRouter.get("/user", function (req, res, next) {
     res.redirect("/");
 }, function (req, res) {
     res.render("data",{
-        loginout:"Logout"
+        loggedIn:true
     });
 });
 

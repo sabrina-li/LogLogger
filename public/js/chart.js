@@ -2,10 +2,10 @@ const displayChart = (data) => {
     const canvas = document.getElementById("poopChart");
     const ctx = canvas.getContext("2d");
     // Make it visually fill the positioned parent
-    canvas.style.width ="100%";
-    canvas.style.height="100%";
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
     // ...then set the internal size to match
-    canvas.width  = canvas.offsetWidth;
+    canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
 
     const lightBlue = "rgba(54, 162, 235, 0.2)",
@@ -16,26 +16,42 @@ const displayChart = (data) => {
     const timeFormat = "YYYY-MM-DDTHH:mm:ss:SSSZ";
     moment.defaultFormat = timeFormat;
 
-    //TODO:clean up code!
+    //TODO:clean up code! Remove redundancy!
     const waterData = data.water;//from dummy_Data
-    let waterChartData, stoolChartData,timelineX=[];
-    if(waterData){
-        timelineX = timelineX.concat(waterData.map(x=>x.time));
-        waterData.sort((a,b)=>{
-            return moment(a.time)-moment(b.time);
+    let waterChartData, stoolChartData, foodChartData, timelineX = [];
+    if (waterData) {
+        timelineX = timelineX.concat(waterData.map(x => x.time));
+        waterData.sort((a, b) => {
+            return moment(a.time) - moment(b.time);
         });
-        waterChartData = waterData.map(water=>{
+        waterChartData = waterData.map(water => {
             let result = {};
             result.y = water.intake;
             result.x = moment(water.time);
             return result;
         });
     }
+    const foodData = data.food;
+    if (foodData) {
+        timelineX = timelineX.concat(foodData.map(x => x.time));
+        foodData.sort((a, b) => {
+            return moment(a.time) - moment(b.time);
+        });
+        foodChartData = foodData.map(food => {
+            let result = {};
+            result.y = 0;
+            result.x = moment(food.time);
+            result.comment = food.comment;
+            result.name = food.name;
+            return result;
+        });
+    }
+
     const stoolData = data.stool;//from dummy_Data
-    if(stoolData){
-        timelineX = timelineX.concat(stoolData.map(x=>x.time));
-        stoolData.sort((a,b)=>{
-            return moment(a.time)-moment(b.time);
+    if (stoolData) {
+        timelineX = timelineX.concat(stoolData.map(x => x.time));
+        stoolData.sort((a, b) => {
+            return moment(a.time) - moment(b.time);
         });
         stoolChartData = stoolData.map(stool => {
             let result = {};
@@ -45,24 +61,31 @@ const displayChart = (data) => {
             return result;
         });
     }
-
-    console.log(timelineX);
     var chartData = {
         // labels: timelineX,
         datasets: [{
-            type: 'line',
-            label: 'Bristol Score',
-            backgroundColor:lightOrange,
-            borderColor:orange,
+            type: "line",
+            label: "Bristol Score",
+            backgroundColor: "rgb(139,69,19, 0.5)",
+            borderColor: "rgba(139,69,19, 1)",
             fill: false,
             data: stoolChartData,
             yAxisID: "y-bristol"
         }, {
-            type: 'bar',
-            label: 'Water Intake',
+            type: "bar",
+            label: "Water Intake",
             backgroundColor: lightBlue,
             borderColor: blue,
             data: waterChartData,
+            borderWidth: 2,
+            yAxisID: "y-water",
+        },
+        {
+            type: "scatter",
+            label: "Food Intake",
+            backgroundColor: lightOrange,
+            borderColor: orange,
+            data: foodChartData,
             borderWidth: 2,
             yAxisID: "y-water",
         }]
@@ -70,7 +93,7 @@ const displayChart = (data) => {
 
 
     const myChart = new Chart(ctx, {
-        type: 'bar',
+        type: "bar",
         data: chartData,
         options: {
             responsive: true,
@@ -119,8 +142,8 @@ const displayChart = (data) => {
                         ticks: {
                             beginAtZero: true,
                             min: 0,
-                            callback: function(value, index, values) {
-                                return value+"ml";
+                            callback: function (value, index, values) {
+                                return value + "ml";
                             }
                         },
                         gridLines: {
@@ -142,18 +165,34 @@ const displayChart = (data) => {
                             max: 7
                         }
                     }],
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        console.log(tooltipItem);
+                        console.log(data.datasets[tooltipItem.datasetIndex]);
+                        var label = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].y || '';
+                        if (data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].name) {
+                            label = "\nFood: "+ data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].name;
+                        }
+                        if(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].comment){
+                            label += "\nComment: "+ data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].comment;
+                        }else{
+                            // label += 
+                        }
+                            
+                        return label;
+                    }
+                }
             }
-        
         }
     });
 
     return myChart;
 };
 
-API.getAllData().then((res)=>{
+API.getAllData().then((res) => {
     console.log(res);
     displayChart(res);
 });
-
-
 

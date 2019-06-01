@@ -13,7 +13,7 @@ class Helper {
 
     static checkAuth(user) {
         if (user && user.id && !isNaN(parseInt(user.id))) {//validate user ID
-            return true;
+            return parseInt(user.id);
             //TODO: check against DB
         } else {
             return false;//TODO  throw the stack  and proper error
@@ -23,16 +23,16 @@ class Helper {
     static cardsData() {
         return [{
             title: "Stool Logger",
-            content: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In cumque reiciendis quod provident quaerat laudantium consequatur officia illo recusandae. Sapiente neque dolorem, dicta voluptate error unde autem delectus at suscipit.",
+            content: "Keep track of the frequency and quality of your stools! Pay close attention to any changes and make sure to note any unusual smells, colors, or other qualities.",
             imgFile:"stool"
         },
         {
             title: "Water Intake",
-            content: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In cumque reiciendis quod provident quaerat laudantium consequatur officia illo recusandae. Sapiente neque dolorem, dicta voluptate error unde autem delectus at suscipit.",
+            content: "Ever wonder why you get constipated? Water content may be a big part of the issue! Track your daily water intake to watch for any patterns.",
             imgFile:"water"
         }, {
             title: "Food Intake",
-            content: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In cumque reiciendis quod provident quaerat laudantium consequatur officia illo recusandae. Sapiente neque dolorem, dicta voluptate error unde autem delectus at suscipit.",
+            content: "Eat something that smelled a bit off? Something too spicy? Now you can see exactly how your meals and snacks are affecting your bowel movements!",
             imgFile:"food"
         }
         ];

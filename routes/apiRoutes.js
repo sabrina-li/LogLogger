@@ -13,6 +13,7 @@ apiRouter.get("/alldata", APIController.getAllDataFromUser);
 //post a new stool log for user
 apiRouter.post("/stool", APIController.postStoolDataForUser);
 
+apiRouter.post("/food", APIController.postFoodDataForUser);
 
 apiRouter.post("/water", APIController.postWaterDataForUser);
 
