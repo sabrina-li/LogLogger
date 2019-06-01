@@ -13,7 +13,7 @@ class Helper {
 
     static checkAuth(user) {
         if (user && user.id && !isNaN(parseInt(user.id))) {//validate user ID
-            return true;
+            return parseInt(user.id);
             //TODO: check against DB
         } else {
             return false;//TODO  throw the stack  and proper error

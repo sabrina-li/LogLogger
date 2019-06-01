@@ -4,12 +4,14 @@ const db = require("../../models");
 class APIController {
     static getAllDataFromUser (req, res, next){
         const userId = Helper.checkAuth(req.user);
+        console.log("user is",userId);
         if(userId){
             db.User.findOne({
                 where:{
                     id:userId
                 }
             }).then(function(userResult) {
+                console.log(userResult);
                 let stoolPromise = userResult.getStools();
                 let waterPromise = userResult.getWaters();
                 let foodPromise = userResult.getFood();
