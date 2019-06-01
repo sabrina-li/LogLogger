@@ -58,6 +58,9 @@ htmlRouter.get("/login", function (req, res) {
     const divIncorrectPassError = ` React.createElement("div", {
         className: "error"
       },"Incorrect password.")`;
+    const divUserDoesExistError = ` React.createElement("div", {
+        className: "error"
+      },"That username is already taken.")`;
 
     if (flashMessage){        
         fs.readFile(path.join(__dirname,"/../public/js/front_form.js"), "utf8", function(err, data) {
@@ -76,6 +79,8 @@ htmlRouter.get("/login", function (req, res) {
             writeToFrontFromJStoModifyErrorMessageOnLoginPage(data,divUserExistError,divInitial);
         } else if (data.includes(divIncorrectPassError)){
             writeToFrontFromJStoModifyErrorMessageOnLoginPage(data,divIncorrectPassError,divInitial);
+        } else if (data.includes(divUserDoesExistError)){
+            writeToFrontFromJStoModifyErrorMessageOnLoginPage(data,divUserDoesExistError,divInitial);
         } else {
             res.sendFile(path.join(__dirname,"/../views/login.html"));
         }

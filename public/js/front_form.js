@@ -93,8 +93,8 @@ class LoginForm extends React.Component {
       type: "submit",
       formAction: "/signup"
     }, "SignUp")), React.createElement("div", {
-        className: "error"
-      },"Incorrect password.")));
+      className: "error"
+    })));
   }
 
 } //Promise.resolve().finally();
