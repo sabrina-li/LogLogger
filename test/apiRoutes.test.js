@@ -85,6 +85,7 @@ describe("helper class for checking if userid is corrent", (done) => {
 
     it("should return true if user ID is in right format", () => {
         user.id = "1";
+
         expect(Helper.checkAuth(user)).to.be.equal(1);
     });
 });
@@ -94,6 +95,7 @@ describe("API Controller", (done) => {
         // request = chai.request(server);
         return db.sequelize.sync({ force: true, match: /_test$/ });
     });
+
 
     it("should get all data from user", (done) => {
         const req = {
@@ -127,6 +129,7 @@ describe("API Controller", (done) => {
             });
         });
     });
+
 
     it("should POST stool data to DB", (done) => {
         const req = {
