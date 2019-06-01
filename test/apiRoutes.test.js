@@ -55,9 +55,9 @@ describe("helper class for checking if userid is corrent", (done) => {
         expect(Helper.checkAuth(user)).to.be.false;
     });
 
-    it("should return true if user ID is in right format", () => {
+    it("should return userid if user ID is in right format", () => {
         user.id = "1";
-        expect(Helper.checkAuth(user)).to.be.true;
+        expect(Helper.checkAuth(user)).to.be.equal(1);
     });
 });
 
@@ -83,9 +83,9 @@ describe("helper class for checking if userid is corrent", (done) => {
         expect(Helper.checkAuth(user)).to.be.false;
     });
 
-    it("should return true if user ID is in right format", () => {
+    it("should return userid if user ID is in right format", () => {
         user.id = "1";
-        expect(Helper.checkAuth(user)).to.be.true;
+        expect(Helper.checkAuth(user)).to.be.equal(1);
     });
 });
 
